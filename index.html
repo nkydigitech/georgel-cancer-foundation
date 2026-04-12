@@ -50,14 +50,14 @@
   .hero { min-height: 92vh; background: linear-gradient(135deg, rgba(0,105,92,.92) 0%, rgba(26,58,92,.85) 55%, rgba(0,0,0,.5) 100%), url('img4.jpg') center/cover no-repeat; display: flex; align-items: center; padding: 80px 40px 60px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 80px; background: #fff; clip-path: ellipse(55% 100% at 50% 100%); }
   .hero-content { max-width: 680px; color: #fff; animation: fadeUp .9s ease both; }
-  .hero-logo { height: 90px; width: auto; margin-bottom: 20px; border-radius: 8px; }
-  .hero-name-georgel { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(3.5rem,8vw,6rem); font-weight: 700; color: #fff; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
-  .hero-name-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(.9rem,2vw,1.3rem); font-weight: 300; color: #7ec8c0; letter-spacing: .32em; text-transform: uppercase; margin-top: 6px; }
-  .hero-location { font-size: .72rem; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-top: 6px; }
-  .hero-divider { width: 52px; height: 3px; background: var(--pink); border-radius: 2px; margin: 24px 0; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem,2.6vw,2rem); font-weight: 400; font-style: italic; line-height: 1.45; margin-bottom: 20px; color: rgba(255,255,255,.8); }
-  .hero h1 em { font-style: italic; color: #f8bbd9; font-weight: 600; }
-  .hero-tagline { display: none; }
+  .hero-logo { height: 80px; width: auto; margin-bottom: 20px; filter: brightness(0) invert(1); opacity: .95; }
+  .hero-foundation-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,6vw,4.8rem); font-weight: 700; color: #fff; line-height: 1.05; margin-bottom: 4px; letter-spacing: .01em; }
+  .hero-foundation-name span { color: #7ec8c0; }
+  .hero-location { font-size: .78rem; color: rgba(255,255,255,.55); letter-spacing: .14em; text-transform: uppercase; font-weight: 500; margin-bottom: 24px; }
+  .hero-divider { width: 56px; height: 3px; background: var(--teal); border-radius: 2px; margin-bottom: 22px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem,2.5vw,1.9rem); font-weight: 400; font-style: italic; line-height: 1.4; margin-bottom: 10px; color: rgba(255,255,255,.85); }
+  .hero h1 em { font-style: normal; color: #f8bbd9; font-weight: 600; }
+  .hero-tagline { font-size: .82rem; font-weight: 600; color: #7ec8c0; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 24px; }
   .hero p { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.88); margin-bottom: 36px; max-width: 520px; font-weight: 300; }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn-primary { background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 4px; font-weight: 600; font-size: .9rem; text-decoration: none; border: 2px solid var(--teal); transition: all .2s; }
@@ -165,7 +165,7 @@
   /* ── FOOTER ── */
   footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 72px 40px 32px; }
   .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
-  .footer-logo { height: 60px; width: auto; margin-bottom: 16px; border-radius: 6px; }
+  .footer-logo { height: 60px; width: auto; margin-bottom: 16px; filter: brightness(0) invert(1); opacity: .85; }
   .footer-tagline { font-size: .82rem; color: #7ec8c0; font-style: italic; margin-bottom: 12px; letter-spacing: .04em; }
   .footer-brand p { font-size: .85rem; line-height: 1.75; color: rgba(255,255,255,.55); }
   .footer-social { display: flex; gap: 10px; margin-top: 20px; }
@@ -242,13 +242,12 @@
 
 <section class="hero" id="home">
   <div class="hero-content">
-    <div>
-      <span class="hero-name-georgel">GEORGEL</span>
-      <span class="hero-name-sub">Cancer Foundation</span>
-      <div class="hero-location">Jos, Plateau State — Nigeria</div>
-    </div>
+    <img src="logo.jpg" alt="GEORGEL Cancer Foundation" class="hero-logo" />
+    <div class="hero-foundation-name">GEORGEL <span>Cancer Foundation</span></div>
+    <div class="hero-location">🎗️ &nbsp; Jos, Plateau State — Nigeria</div>
     <div class="hero-divider"></div>
-    <h1><em>Fighting Cancer, Restoring Hope, Saving Lives.</em></h1>
+    <h1>Fighting Cancer, <em>Restoring Hope,</em> Saving Lives.</h1>
+    <div class="hero-tagline">Spreading Hope, Saving Lives</div>
     <p>Committed to cancer prevention, early detection, and advocacy across Nigeria — reaching hospitals, communities, media, and government in the fight against cancer.</p>
     <div class="hero-actions">
       <a href="#activities" class="btn-primary">See Our Work</a>
