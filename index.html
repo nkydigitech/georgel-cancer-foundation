@@ -50,11 +50,14 @@
   .hero { min-height: 92vh; background: linear-gradient(135deg, rgba(0,105,92,.92) 0%, rgba(26,58,92,.85) 55%, rgba(0,0,0,.5) 100%), url('img4.jpg') center/cover no-repeat; display: flex; align-items: center; padding: 80px 40px 60px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 80px; background: #fff; clip-path: ellipse(55% 100% at 50% 100%); }
   .hero-content { max-width: 680px; color: #fff; animation: fadeUp .9s ease both; }
-  .hero-logo { height: 80px; width: auto; margin-bottom: 28px; filter: brightness(0) invert(1); opacity: .92; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(6px); padding: 6px 16px; border-radius: 50px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; color: #a7e8e3; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,5vw,4rem); font-weight: 700; line-height: 1.12; margin-bottom: 16px; }
-  .hero h1 em { font-style: italic; color: #f8bbd9; }
-  .hero-tagline { font-size: 1.1rem; font-weight: 600; color: #a7e8e3; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 20px; }
+  .hero-logo { height: 70px; width: auto; margin-bottom: 20px; filter: brightness(0) invert(1); opacity: .88; }
+  .hero-name-georgel { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(3.5rem,8vw,6rem); font-weight: 700; color: #fff; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
+  .hero-name-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(.9rem,2vw,1.3rem); font-weight: 300; color: #7ec8c0; letter-spacing: .32em; text-transform: uppercase; margin-top: 6px; }
+  .hero-location { font-size: .72rem; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-top: 6px; }
+  .hero-divider { width: 52px; height: 3px; background: var(--pink); border-radius: 2px; margin: 24px 0; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem,2.6vw,2rem); font-weight: 400; font-style: italic; line-height: 1.45; margin-bottom: 20px; color: rgba(255,255,255,.8); }
+  .hero h1 em { font-style: italic; color: #f8bbd9; font-weight: 600; }
+  .hero-tagline { display: none; }
   .hero p { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.88); margin-bottom: 36px; max-width: 520px; font-weight: 300; }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn-primary { background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 4px; font-weight: 600; font-size: .9rem; text-decoration: none; border: 2px solid var(--teal); transition: all .2s; }
@@ -240,9 +243,13 @@
 <section class="hero" id="home">
   <div class="hero-content">
     <img src="logo.jpg" alt="GEORGEL Cancer Foundation" class="hero-logo" />
-    <div class="hero-badge">🎗️ &nbsp; GEORGEL Cancer Foundation &nbsp;·&nbsp; Jos, Plateau State — Nigeria</div>
-    <h1>Fighting Cancer,<br><em>Restoring Hope,</em><br>Saving Lives.</h1>
-    <div class="hero-tagline">Spreading Hope, Saving Lives</div>
+    <div>
+      <span class="hero-name-georgel">GEORGEL</span>
+      <span class="hero-name-sub">Cancer Foundation</span>
+      <div class="hero-location">Jos, Plateau State — Nigeria</div>
+    </div>
+    <div class="hero-divider"></div>
+    <h1><em>Fighting Cancer, Restoring Hope, Saving Lives.</em></h1>
     <p>Committed to cancer prevention, early detection, and advocacy across Nigeria — reaching hospitals, communities, media, and government in the fight against cancer.</p>
     <div class="hero-actions">
       <a href="#activities" class="btn-primary">See Our Work</a>
@@ -449,7 +456,7 @@
         <p>Whether you want to volunteer, partner, refer a patient, or learn more — reach out. Every message matters to us.</p>
         <div class="contact-items">
           <div class="contact-item"><div class="c-icon">📍</div><div class="c-detail"><strong>Location</strong><span>Jos, Plateau State, Nigeria</span></div></div>
-          <div class="contact-item"><div class="c-icon">📧</div><div class="c-detail"><strong>Email</strong><span>info@georgelcancerfoundation.org</span></div></div>
+          <div class="contact-item"><div class="c-icon">📧</div><div class="c-detail"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8c1c6cec7e8cfcdc7dacfcdc4cbc9c6cbcddacec7ddc6ccc9dcc1c7c686c7dacf">[email&#160;protected]</a></span></div></div>
           <div class="contact-item"><div class="c-icon">📞</div><div class="c-detail"><strong>Phone</strong><span>+234 — — — — — —</span></div></div>
           <div class="contact-item"><div class="c-icon">🌐</div><div class="c-detail"><strong>Website</strong><span>www.georgelcancerfoundation.org</span></div></div>
         </div>
@@ -509,7 +516,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
   document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
   const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*.08+'s';e.target.classList.add('visible');}});},{threshold:.1});
@@ -517,8 +524,4 @@
   function openLightbox(src,title,desc){document.getElementById('lightboxImg').src=src;document.getElementById('lightboxTitle').textContent=title;document.getElementById('lightboxDesc').textContent=desc;document.getElementById('lightbox').classList.add('open');}
   function closeLightboxOutside(e){if(e.target===document.getElementById('lightbox'))document.getElementById('lightbox').classList.remove('open');}
   document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
-  document.querySelectorAll('.filter-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');const f=tab.dataset.filter;document.querySelectorAll('.gallery-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';});});});
-  window.addEventListener('scroll',()=>{document.getElementById('mainNav').style.boxShadow=window.scrollY>10?'0 4px 24px rgba(0,137,123,.12)':'0 2px 20px rgba(0,137,123,.06)';});
-</script>
-</body>
-</html>
+  document.querySelectorAll('.filter-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');const f=tab.dataset.filter;document.querySelectorAll('.gallery-card').forEach(c=>{c.style.display=(f==='all'||c
