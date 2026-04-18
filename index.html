@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GEORGEL Cancer Foundation — Spreading Hope, Saving Lives</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -38,13 +39,20 @@
   .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; transition: transform 0.3s; }
   .nav-logo:hover { transform: scale(1.02); }
   .nav-logo img { height: 56px; width: auto; object-fit: contain; }
-  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--navy); font-size: .85rem; font-weight: 600; transition: color .3s; position: relative; letter-spacing: 0.04em; text-transform: uppercase; }
-  .nav-links a::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width .3s; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links li { position: relative; }
+  .nav-links a { text-decoration: none; color: var(--navy); font-size: .85rem; font-weight: 600; transition: color .3s; position: relative; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 0; }
   .nav-links a:hover { color: var(--teal); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-cta { background: var(--teal) !important; color: #fff !important; padding: 12px 28px; border-radius: 2px; font-weight: 700 !important; transition: all .3s !important; border: 1px solid var(--teal); }
-  .nav-cta:hover { background: var(--teal-dark) !important; border-color: var(--teal-dark) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,137,123,0.2); }
+  
+  /* ── DROPDOWN STYLES ── */
+  .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: var(--shadow-md); border-radius: 4px; padding: 15px 0; display: none; flex-direction: column; z-index: 1002; border: 1px solid var(--border); }
+  .dropdown-menu li { width: 100%; }
+  .dropdown-menu a { padding: 10px 25px; display: block; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--gray-mid); border: none; text-transform: uppercase; }
+  .dropdown-menu a:hover { background: var(--teal-pale); color: var(--teal); }
+  .nav-links li:hover .dropdown-menu { display: flex; animation: fadeUp 0.3s ease forwards; }
+
+  .nav-cta { background: var(--teal) !important; color: #fff !important; padding: 10px 24px !important; border-radius: 2px; font-weight: 700 !important; transition: all .3s !important; border: 1px solid var(--teal); }
+  .nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
 
   /* ── HERO ── */
   .hero { min-height: 100vh; background: linear-gradient(135deg, rgba(0,105,92,0.92) 0%, rgba(26,58,92,0.85) 55%, rgba(0,0,0,0.65) 100%), url('img/img4.jpg') center/cover no-repeat; display: flex; align-items: center; padding: 100px 60px 100px; position: relative; overflow: hidden; }
@@ -77,14 +85,13 @@
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.5rem); font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.01em; }
   .section-sub { font-size: 1.05rem; color: var(--gray-mid); line-height: 1.8; max-width: 600px; font-weight: 400; }
 
-  /* ── ABOUT ── */
+  /* ── ABOUT & MANDATE ── */
   #about { background: var(--teal-pale); }
   .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 100px; align-items: center; }
   .about-img-stack { position: relative; height: 560px; }
   .about-img-main { position: absolute; top: 0; left: 0; width: 85%; height: 85%; object-fit: cover; border-radius: 4px; box-shadow: var(--shadow-md); }
   .about-img-accent { position: absolute; bottom: 0; right: 0; width: 55%; height: 55%; object-fit: cover; border-radius: 4px; border: 8px solid #fff; box-shadow: var(--shadow-md); }
   .about-ribbon { position: absolute; top: 40px; right: 10px; background: var(--teal); color: #fff; padding: 12px 20px; border-radius: 2px; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; z-index: 2; box-shadow: 0 8px 24px rgba(0,137,123,0.2); }
-  .about-text .section-sub { max-width: 100%; margin-bottom: 24px; color: var(--navy-mid); }
   .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
   .pillar { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s ease; }
   .pillar:hover { box-shadow: var(--shadow-md); border-color: var(--teal); transform: translateY(-3px); }
@@ -92,11 +99,47 @@
   .pillar strong { display: block; font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; letter-spacing: 0.01em; }
   .pillar p { font-size: .88rem; color: var(--gray-mid); line-height: 1.6; }
 
+  .mandate-section { margin-top: 80px; padding: 60px; background: #fff; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .mandate-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+  .mandate-top-grid h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--navy); line-height: 1.3; font-weight: 600; }
+  .mandate-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .objectives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .obj-item { padding: 20px; transition: transform 0.3s ease; }
+  .obj-item:hover { transform: translateY(-5px); }
+  .obj-item div { font-size: 1.8rem; margin-bottom: 15px; }
+  .obj-item h4 { font-size: 1rem; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
+  .obj-item p { font-size: 0.9rem; color: var(--gray-mid); line-height: 1.6; }
+
+  .founder-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
+  .founder-img-container { position: relative; max-width: 440px; margin-left: auto; }
+  .founder-img-wrapper { width: 100%; aspect-ratio: 4/5; background: var(--gray-light); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .founder-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .founder-img-wrapper:hover img { transform: scale(1.03); }
+  .founder-tag { position: absolute; bottom: -20px; right: -20px; background: var(--navy); color: #fff; padding: 20px; border-radius: 4px; box-shadow: var(--shadow-md); z-index: 10; }
+  .founder-tag p { font-weight: 700; font-size: 1.1rem; margin: 0; }
+  .founder-tag span { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .trustees-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
+  .trustees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+  .trustee-card { background: #fff; padding: 40px 30px; border-radius: 8px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden; }
+  .trustee-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--teal-light); }
+  .trustee-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--teal); opacity: 0; transition: opacity 0.3s; }
+  .trustee-card:hover::before { opacity: 1; }
+  .trustee-img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 24px; border: 3px solid var(--teal-pale); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .trustee-img img { width: 100%; height: 100%; object-fit: cover; }
+  .trustee-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; color: var(--navy); margin-bottom: 6px; }
+  .trustee-role { font-size: 0.82rem; color: var(--teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; display: block; }
+  .trustee-bio { font-size: 0.92rem; color: var(--gray-mid); line-height: 1.7; }
+
+  .about-extended { margin-top: 60px; background: var(--white); padding: 40px; border-radius: 8px; border: 1px solid var(--border); }
+  .info-alert { margin-top: 30px; padding: 20px; background: var(--teal-pale); border-left: 4px solid var(--teal); border-radius: 4px; display: flex; flex-direction: column; gap: 8px; }
+  .info-alert a { color: var(--teal); text-decoration: none; font-weight: 600; }
+
   /* ── GALLERY ── */
   #activities { background: #fff; }
   .activities-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; flex-wrap: wrap; gap: 32px; }
   .filter-tabs { display: flex; gap: 12px; flex-wrap: wrap; }
-  .filter-tab { padding: 10px 22px; border-radius: 2px; font-size: .8rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--gray-mid); transition: all 0.3s; font-family: 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+  .filter-tab { padding: 10px 22px; border-radius: 2px; font-size: .8rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--gray-mid); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.05em; }
   .filter-tab.active, .filter-tab:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
   .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; grid-auto-flow: dense; }
   .gallery-card { border-radius: 4px; overflow: hidden; background: #fff; border: 1px solid var(--border); transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; box-shadow: var(--shadow-sm); }
@@ -109,116 +152,193 @@
   .card-tag-overlay.pink { background: var(--pink); }
   .card-body { padding: 28px; }
   .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.25; }
-  .card-body p { font-size: .9rem; color: var(--gray-mid); line-height: 1.7; font-weight: 400; }
+  .card-body p { font-size: .9rem; color: var(--gray-mid); line-height: 1.7; }
   .card-meta { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: .8rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  /* ── PARTNERS ── */
+  /* ── PARTNERS, DONATE, CONTACT, FOOTER ── */
   .partners-strip { background: var(--teal-pale); padding: 80px 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
   .partners-strip h2 { font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; margin-bottom: 48px; }
   .partners-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; max-width: 1100px; margin: 0 auto; }
   .partner-badge { background: #fff; border: 1px solid var(--border); border-radius: 2px; padding: 14px 28px; font-size: .85rem; font-weight: 600; color: var(--navy); transition: all 0.3s; box-shadow: var(--shadow-sm); }
   .partner-badge:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-  /* ── DONATE ── */
   #donate { background: linear-gradient(135deg, var(--navy) 0%, #0d2b45 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
-  #donate::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('img/logo.jpg') center/300px no-repeat; opacity: .04; pointer-events: none; }
-  #donate .section-tag { color: #7ec8c0; border-color: #7ec8c0; }
-  #donate .section-title { color: #fff; }
-  #donate .section-sub { color: rgba(255,255,255,.75); max-width: 600px; margin: 0 auto 48px; }
   .donate-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px; }
   .donate-card { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 8px; padding: 32px 24px; transition: all .2s; cursor: pointer; }
   .donate-card:hover, .donate-card.highlighted { background: rgba(255,255,255,.14); border-color: var(--teal); transform: translateY(-2px); }
   .donate-card.highlighted { border-color: #7ec8c0; box-shadow: 0 8px 32px rgba(0,137,123,.2); }
   .donate-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: #7ec8c0; margin-bottom: 6px; }
-  .donate-label { font-size: .82rem; color: rgba(255,255,255,.7); margin-bottom: 16px; }
-  .donate-impact { font-size: .78rem; color: rgba(255,255,255,.6); line-height: 1.5; font-style: italic; }
-  .donate-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-donate { background: var(--teal); color: #fff; padding: 15px 40px; border-radius: 4px; font-weight: 700; font-size: .95rem; text-decoration: none; border: 2px solid var(--teal); transition: all .2s; }
-  .btn-donate:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
-  .btn-outline-light { background: transparent; color: #fff; padding: 15px 40px; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 2px solid rgba(255,255,255,.4); transition: all .2s; }
-  .btn-outline-light:hover { background: rgba(255,255,255,.08); border-color: #fff; }
 
-  /* ── CONTACT ── */
   #contact { background: #fff; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
-  .contact-info p { font-size: .9rem; color: var(--gray-mid); line-height: 1.75; margin-bottom: 32px; }
-  .contact-items { display: flex; flex-direction: column; gap: 20px; }
-  .contact-item { display: flex; align-items: flex-start; gap: 16px; }
-  .c-icon { width: 42px; height: 42px; background: var(--teal-pale); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-  .c-detail strong { display: block; font-size: .82rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; letter-spacing: .04em; text-transform: uppercase; }
-  .c-detail span { font-size: .88rem; color: var(--gray-mid); }
   .contact-form { background: var(--gray-light); border-radius: 10px; padding: 40px; border: 1px solid var(--border); }
-  .contact-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 28px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-size: .78rem; font-weight: 600; color: var(--navy); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 5px; font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--navy); background: #fff; transition: border-color .2s; outline: none; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); }
-  .form-group textarea { height: 120px; resize: vertical; }
-  .btn-submit { width: 100%; background: var(--teal); color: #fff; padding: 14px; border: none; border-radius: 5px; font-family: 'DM Sans', sans-serif; font-size: .92rem; font-weight: 600; cursor: pointer; letter-spacing: .04em; transition: background .2s; margin-top: 8px; }
-  .btn-submit:hover { background: var(--teal-dark); }
 
-  /* ── FOOTER ── */
   footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 72px 40px 32px; }
   .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
-  .footer-logo { height: 60px; width: auto; margin-bottom: 16px; border-radius: 6px; }
-  .footer-tagline { font-size: .82rem; color: #7ec8c0; font-style: italic; margin-bottom: 12px; letter-spacing: .04em; }
-  .footer-brand p { font-size: .85rem; line-height: 1.75; color: rgba(255,255,255,.55); }
-  .footer-social { display: flex; gap: 10px; margin-top: 20px; }
-  .social-btn { width: 36px; height: 36px; background: rgba(255,255,255,.08); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .9rem; text-decoration: none; color: rgba(255,255,255,.65); transition: all .2s; }
-  .social-btn:hover { background: var(--teal); color: #fff; }
-  .footer-col h4 { font-size: .78rem; font-weight: 600; color: #7ec8c0; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a { text-decoration: none; color: rgba(255,255,255,.55); font-size: .85rem; transition: color .2s; }
-  .footer-col a:hover { color: #7ec8c0; }
-  .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; font-size: .8rem; color: rgba(255,255,255,.35); flex-wrap: wrap; gap: 10px; }
-  .footer-bottom a { color: #7ec8c0; text-decoration: none; }
 
-  /* ── LIGHTBOX ── */
+  /* ── FLOATING SOCIAL BAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
+  .social-sidebar a { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
+  .social-sidebar a:hover { width: 58px; padding-left: 10px; }
+  .social-sidebar .facebook { background: #3b5998; }
+  .social-sidebar .instagram { background: #e1306c; }
+  .social-sidebar .x-twitter { background: #000000; }
+  .social-sidebar .whatsapp { background: #25d366; }
+
+  @media(max-width: 768px) { .social-sidebar { display: none; } }
+
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 12px; }
+  .side-icon { width: 44px; height: 44px; background: #fff; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--navy); text-decoration: none; font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: var(--shadow-sm); }
+  .side-icon:hover { transform: scale(1.1) translateX(5px); background: var(--teal); color: #fff; border-color: var(--teal); box-shadow: 0 8px 20px rgba(0,137,123,0.2); }
+  .side-icon.whatsapp:hover { background: #25D366; border-color: #25D366; }
+  .side-icon.facebook:hover { background: #1877F2; border-color: #1877F2; }
+  .side-icon.instagram:hover { background: #E4405F; border-color: #E4405F; }
+
+  @media(max-width: 1024px) { .social-sidebar { display: none; } }
+
+  /* ── SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; }
+  .social-sidebar a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.3s; font-size: 1.1rem; }
+  .social-sidebar .fb { background: #3b5998; }
+  .social-sidebar .tw { background: #000000; }
+  .social-sidebar .ig { background: #e1306c; }
+  .social-sidebar .wa { background: #25d366; }
+  .social-sidebar a:hover { width: 54px; padding-left: 10px; }
+
+  @media(max-width: 768px) { .social-sidebar { display: none; } }
+
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
+  .social-sidebar a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
+  .social-sidebar a:hover { width: 54px; padding-left: 10px; }
+  .social-sidebar .facebook { background: #3b5998; }
+  .social-sidebar .instagram { background: #e1306c; }
+  .social-sidebar .x-twitter { background: #000; }
+  .social-sidebar .whatsapp { background: #25d366; }
+
+  @media(max-width: 768px) { .social-sidebar { display: none; } }
+
+  /* ── STICKY SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
+  .social-side-link { width: 44px; height: 44px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem; border-radius: 0 4px 4px 0; }
+  .social-side-link:hover { width: 54px; background: var(--teal); padding-left: 10px; }
+  .social-side-link.facebook:hover { background: #3b5998; }
+  .social-side-link.twitter:hover { background: #000; }
+  .social-side-link.instagram:hover { background: #e1306c; }
+  .social-side-link.whatsapp:hover { background: #25d366; }
+
+  @media(max-width: 768px) { .social-sidebar { display: none; } }
+
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
+  .social-sidebar a { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
+  .social-sidebar a:hover { width: 58px; padding-left: 10px; }
+  .social-sidebar .facebook { background: #3b5998; }
+  .social-sidebar .instagram { background: #e1306c; }
+  .social-sidebar .x-twitter { background: #000000; }
+  .social-sidebar .whatsapp { background: #25d366; }
+
+  @media(max-width: 768px) { .social-sidebar { display: none; } }
+
+  /* ── LIGHTBOX & REVEAL ── */
   .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 9999; align-items: center; justify-content: center; padding: 40px; }
   .lightbox.open { display: flex; }
   .lightbox-inner { background: #fff; border-radius: 10px; max-width: 720px; width: 100%; overflow: hidden; position: relative; animation: scaleIn .25s ease; }
-  .lightbox-inner img { width: 100%; max-height: 420px; object-fit: cover; display: block; }
-  .lightbox-body { padding: 24px 28px 28px; }
-  .lightbox-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-  .lightbox-body p { font-size: .88rem; color: var(--gray-mid); line-height: 1.7; }
-  .lightbox-close { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.55); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-  .lightbox-close:hover { background: var(--teal); }
+  
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
+  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
+  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
+  .social-side-link.facebook { background: #3b5998; }
+  .social-side-link.x-twitter { background: #000; }
+  .social-side-link.instagram { background: #e4405f; }
+  .social-side-link.whatsapp { background: #25d366; }
 
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
-  @keyframes scaleIn { from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);} }
-  .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease,transform .6s ease; }
+  @media(max-width:768px) { .social-sidebar { display: none; } }
+
+  /* ── SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+  .side-icon { width: 44px; height: 44px; background: #fff; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--navy); box-shadow: var(--shadow-sm); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .side-icon:hover { transform: scale(1.1) translateX(-5px); color: #fff; }
+  .side-icon.fb:hover { background: #1877F2; border-color: #1877F2; }
+  .side-icon.tw:hover { background: #000000; border-color: #000000; }
+  .side-icon.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-color: transparent; }
+  .side-icon.wa:hover { background: #25D366; border-color: #25D366; }
+
+  /* ── FOOTER UPDATES ── */
+  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: all 0.3s ease; }
+  .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+  .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
+  .social-btn.tw:hover { background: #000000; border-color: #000000; }
+  .social-btn.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-color: transparent; }
+  
+  @media(max-width:900px){
+    .social-sidebar { display: none; }
+  }
+
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
+  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
+  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
+  .social-side-link.facebook { background: #3b5998; }
+  .social-side-link.x-twitter { background: #000; }
+  .social-side-link.instagram { background: #e4405f; }
+  .social-side-link.whatsapp { background: #25d366; }
+
+  @media(max-width:768px) { .social-sidebar { display: none; } }
+
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
+  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
+  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
+  .social-side-link.facebook { background: #3b5998; }
+  .social-side-link.twitter { background: #000; }
+  .social-side-link.instagram { background: #e4405f; }
+  .social-side-link.whatsapp { background: #25d366; }
+
+  @media(max-width:768px) { .social-sidebar { display: none; } }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+  @keyframes scaleIn { from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);} }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(0.165, 0.84, 0.44, 1), transform .8s cubic-bezier(0.165, 0.84, 0.44, 1); }
   .reveal.visible { opacity:1; transform:translateY(0); }
 
   @media(max-width:900px){
     nav{padding:0 24px;}
-    .nav-links{display:none;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:#fff;padding:24px;border-bottom:1px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,.08);gap:20px;}
-    .nav-links.open{display:flex;}
-    .hamburger{display:flex;}
     .hero{padding:100px 24px 60px;min-height:auto;}
     .stats-grid{grid-template-columns:1fr 1fr;}
-    .stat-item{border-right:none;border-bottom:1px solid var(--border);}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
-    .about-img-stack{height:300px;}
     .gallery-grid{grid-template-columns:1fr 1fr;}
-    .gallery-card.featured{grid-column:span 2;}
-    .donate-cards{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:1fr 1fr;}
-    section{padding:64px 24px;}
-    .form-row{grid-template-columns:1fr;}
+    .mandate-top-grid { grid-template-columns: 1fr; gap: 30px; }
+    .objectives-grid { grid-template-columns: 1fr 1fr; }
+    .founder-img-container { margin: 40px auto 0; }
   }
-  @media(max-width:560px){
+  @media(max-width:600px){
     .gallery-grid{grid-template-columns:1fr;}
-    .gallery-card.featured{grid-column:span 1;}
-    .about-pillars{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:1fr;}
-    .hero-actions{flex-direction:column;}
-    .hero-actions a{text-align:center;}
+    .about-pillars,.footer-grid,.objectives-grid{grid-template-columns:1fr;}
+    .mandate-section { padding: 30px 20px; }
   }
 </style>
 </head>
 <body>
+
+<body>
+
+<!-- Floating Social Sidebar -->
+<div class="social-sidebar" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column;">
+  <a href="#" class="side-social" style="background: #1877F2; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; border-radius: 0 4px 0 0;"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="side-social" style="background: #E4405F; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="side-social" style="background: #0077b5; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+  <a href="#" class="side-social" style="background: #000; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://wa.me/2348032585419" class="side-social" style="background: #25D366; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; border-radius: 0 0 4px 0;"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<style>
+  .side-social:hover { width: 54px !important; padding-left: 10px; }
+  @media (max-width: 768px) { .social-sidebar { display: none !important; } }
+</style>
 
 <div class="topbar">🎗️ Spreading Hope, Saving Lives &nbsp;|&nbsp; World Cancer Day: February 4th &nbsp;|&nbsp; <a href="#donate">Support our mission →</a></div>
 
@@ -228,61 +348,291 @@
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
+    <li class="has-dropdown">
+      <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem; margin-left: 4px;"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#mandate">Vision &amp; Mission</a></li>
+        <li><a href="#mandate">Strategic Objectives</a></li>
+        <li><a href="#trustees">Board of Trustees</a></li>
+      </ul>
+    </li>
     <li><a href="#activities">Activities</a></li>
     <li><a href="#pink-october">Pink October</a></li>
+    <li><a href="#bank-details">Bank Details</a></li>
     <li><a href="#donate" class="nav-cta">Donate Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div>
-      <span class="hero-name-georgel">GEORGEL</span>
-      <span class="hero-name-sub">Cancer Foundation</span>
-      <div class="hero-location">Jos, Plateau State — Nigeria</div>
+<!-- IMPACT CAROUSEL HERO -->
+<section class="hero-carousel" id="home">
+  <div class="carousel-container">
+    <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/outreach1.jpeg');">
+      <div class="hero-content">
+        <span class="hero-name-georgel">GEORGEL</span>
+        <span class="hero-name-sub">Cancer Foundation</span>
+        <h1><em>Saving Lives Through Early Detection.</em></h1>
+        <p>Join our mission to provide free cancer screenings and compassionate support to communities across Nigeria.</p>
+        <div class="hero-actions">
+          <a href="#activities" class="btn-primary" style="background:var(--teal); color:#fff; padding:16px 36px; border-radius:4px; text-decoration:none; font-weight:700; margin-right:16px;">Our Impact</a>
+          <a href="#donate" class="btn-outline-white" style="border:2px solid #fff; color:#fff; padding:14px 34px; border-radius:4px; text-decoration:none; font-weight:600;">Donate Now</a>
+        </div>
+      </div>
     </div>
-    <div class="hero-divider"></div>
-    <h1><em>Fighting Cancer, Restoring Hope, Saving Lives.</em></h1>
-    <p>Committed to cancer prevention, early detection, and advocacy across Nigeria — reaching hospitals, communities, media, and government in the fight against cancer.</p>
-    <div class="hero-actions">
-      <a href="#activities" class="btn-primary">See Our Work</a>
-      <a href="#donate" class="btn-outline-white">Make a Donation</a>
+    <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/rally8.jpg');">
+      <div class="hero-content">
+        <span class="hero-name-georgel">ADVOCACY</span>
+        <span class="hero-name-sub">Community Presence</span>
+        <h1><em>Breaking Stigma, Restoring Hope.</em></h1>
+        <p>We are on the ground, engaging government and media to make cancer prevention a national priority.</p>
+        <div class="hero-actions">
+          <a href="#about" class="btn-primary" style="background:var(--teal); color:#fff; padding:16px 36px; border-radius:4px; text-decoration:none; font-weight:700; margin-right:16px;">Learn More</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="scroll-indicator">↓</div>
+  <div class="carousel-controls">
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+  </div>
 </section>
 
-<div class="stats-band">
-  <div class="stats-grid">
-    <div class="stat-item reveal"><div class="stat-num">20+</div><div class="stat-label">Outreach Activities</div></div>
-    <div class="stat-item reveal"><div class="stat-num">10+</div><div class="stat-label">Partner Organizations</div></div>
-    <div class="stat-item reveal"><div class="stat-num">3</div><div class="stat-label">Media Engagements</div></div>
-    <div class="stat-item reveal"><div class="stat-num">2026</div><div class="stat-label">World Cancer Day Rally</div></div>
-  </div>
-</div>
+<style>
+  .hero-carousel { height: 100vh; position: relative; overflow: hidden; }
+  .carousel-container { height: 100%; width: 100%; }
+  .slide { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; padding: 0 60px; }
+  .slide.active { opacity: 1; z-index: 1; }
+  .carousel-controls { position: absolute; bottom: 40px; right: 60px; z-index: 10; display: flex; gap: 15px; }
+  .carousel-controls button { background: rgba(255,255,255,0.1); border: 1px solid #fff; color: #fff; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: 0.3s; font-size: 1.2rem; }
+  .carousel-controls button:hover { background: var(--teal); border-color: var(--teal); }
+  @media (max-width: 768px) { .slide { padding: 0 24px; text-align: center; } .carousel-controls { right: 50%; transform: translateX(50%); } }
+</style>
 
-<section id="about">
+<!-- BANK DETAILS SECTION -->
+<section id="bank-details" style="background: var(--gray-light); padding: 100px 40px; text-align: center; border-top: 1px solid var(--border);">
+  <div class="section-inner" style="max-width: 800px;">
+    <div class="section-tag">Direct Support</div>
+    <h2 class="section-title">Direct Bank Transfer</h2>
+    <p class="section-sub" style="margin: 0 auto 40px;">For direct contributions, sponsorships, or corporate partnerships, please use the foundation's official account details below.</p>
+    
+    <div style="background: #fff; padding: 40px; border-radius: 12px; box-shadow: var(--shadow-md); border: 1px solid var(--border); display: inline-block; width: 100%; max-width: 500px;">
+      <div style="margin-bottom: 25px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Account Name</span>
+        <strong style="font-size: 1.3rem; color: var(--navy);">GEORGEL CANCER FOUNDATION</strong>
+      </div>
+      <div style="margin-bottom: 25px; position: relative;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Account Number</span>
+        <strong id="accNum" style="font-size: 2rem; color: var(--teal); letter-spacing: 0.05em;">XXXXXXXXXX</strong>
+        <button onclick="copyAcc()" style="display: block; margin: 10px auto 0; background: var(--teal-pale); border: 1px solid var(--teal); color: var(--teal); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.3s;">Copy Number</button>
+      </div>
+      <div>
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Bank Name</span>
+        <strong style="font-size: 1.2rem; color: var(--navy);">YOUR BANK NAME HERE</strong>
+      </div>
+    </div>
+    <p style="margin-top: 30px; font-size: 0.85rem; color: var(--gray-mid); font-style: italic;">"Transparency is our foundation. Thank you for your trust and support."</p>
+  </div>
+</section>
+
+<script>
+  function copyAcc() {
+    const num = document.getElementById('accNum').innerText;
+    navigator.clipboard.writeText(num);
+    alert('Account Number Copied: ' + num);
+  }
+  
+  /* Carousel Logic */
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  function showSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
+  document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
+  setInterval(() => showSlide(currentSlide + 1), 6000);
+</script>
+
+<section id="activities">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-img-stack reveal">
         <img src="img/img15.jpg" alt="GEORGEL at JUTH" class="about-img-main" />
         <img src="img/img17.jpg" alt="Visiting a cancer warrior" class="about-img-accent" />
-        <div class="about-ribbon">Est. Jos, Nigeria</div>
+        <div class="about-ribbon">Est. Aug 2025</div>
       </div>
       <div class="about-text reveal">
         <div class="section-tag">About GEORGEL</div>
         <h2 class="section-title">A Foundation Built on Compassion &amp; Action</h2>
-        <p class="section-sub">GEORGEL Cancer Foundation is a Nigerian civil society organization committed to reducing the burden of cancer through awareness, advocacy, screening, and partnerships with leading health institutions and government agencies across Nigeria.</p>
-        <p class="section-sub" style="margin-top:12px;">From free breast and cervical cancer screenings to high-level stakeholder engagements, we are on the ground — in communities, hospitals, media houses, and government offices — making cancer prevention a national priority.</p>
+        <p class="section-sub">The GEORGEL Cancer Foundation is a non-governmental, nonprofit organization dedicated to raising cancer awareness, promoting early detection, and providing compassionate support to patients and caregivers. We are a formally registered entity with the Corporate Affairs Commission (CAC), incorporated on 26 August 2025 (Reg No: 8744109) in Nigeria.</p>
+        <p class="section-sub" style="margin-top:12px;">Our work is guided by a clear mission: to ensure that individuals and communities are informed, empowered, and supported in the fight against cancer through education, prevention, screening access, and psychosocial care.</p>
+        
         <div class="about-pillars">
-          <div class="pillar"><div class="pillar-icon">🔬</div><div><strong>Early Detection</strong><p>Free screenings across Jos and North-Central Nigeria</p></div></div>
-          <div class="pillar"><div class="pillar-icon">📢</div><div><strong>Advocacy</strong><p>Engaging government, media, and professional bodies</p></div></div>
-          <div class="pillar"><div class="pillar-icon">🤝</div><div><strong>Partnerships</strong><p>JUTH, NMA, MWAN, NCS, and federal ministries</p></div></div>
-          <div class="pillar"><div class="pillar-icon">💊</div><div><strong>Medical Support</strong><p>Donating supplies and supporting cancer warriors</p></div></div>
+          <div class="pillar">
+            <div class="pillar-icon">🧠</div>
+            <div><strong>Psychosocial Support</strong><p>Mental health for caregivers and families</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🔗</div>
+            <div><strong>Support Systems</strong><p>Strengthening referral and community networks</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🚫</div>
+            <div><strong>Reducing Stigma</strong><p>Combating misinformation about cancer</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📈</div>
+            <div><strong>Empowerment</strong><p>Livelihood support for patients and survivors</p></div>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Core Mandate (Vision, Mission, Objectives) -->
+    <div class="mandate-section reveal">
+      <div class="mandate-top-grid">
+        <div class="mission-box">
+          <div class="mandate-label" style="color: var(--teal);">Our Mission</div>
+          <h3>To ensure individuals and communities are informed, empowered, and supported through education, prevention, screening access, and psychosocial care.</h3>
+        </div>
+        <div class="vision-box">
+          <div class="mandate-label" style="color: var(--pink);">Our Vision</div>
+          <h3>A future where cancer care is accessible, stigma is eliminated, and hope is restored to every life touched by the disease.</h3>
+        </div>
+      </div>
+
+      <div class="objectives-header" style="text-align: center; margin-bottom: 40px;">
+        <div class="section-tag" style="border: none; padding: 0;">Our Strategic Objectives</div>
+      </div>
+
+      <div class="objectives-grid">
+        <div class="obj-item">
+          <div>📢</div>
+          <h4>Awareness & Prevention</h4>
+          <p>Increasing public knowledge on early detection and preventive practices to reduce the national cancer burden.</p>
+        </div>
+        <div class="obj-item">
+          <div>🏥</div>
+          <h4>Screening Access</h4>
+          <p>Facilitating life-saving screening services through strategic partnerships with hospitals and health institutions.</p>
+        </div>
+        <div class="obj-item">
+          <div>⚖️</div>
+          <h4>Advocacy & Policy</h4>
+          <p>Engaging government parastatals and media to advocate for improved cancer care standards and legislation.</p>
+        </div>
+        <div class="obj-item">
+          <div>🤝</div>
+          <h4>Holistic Support</h4>
+          <p>Providing compassionate assistance and safe psychosocial spaces for patients, survivors, and their caregivers.</p>
+        </div>
+        <div class="obj-item">
+          <div>💰</div>
+          <h4>Resource Mobilization</h4>
+          <p>Securing financial and material aid to support underserved and rural populations with limited healthcare access.</p>
+        </div>
+        <div class="obj-item">
+          <div>🌍</div>
+          <h4>Global Impact</h4>
+          <p>Collaborating with like-minded global and local organizations to scale our reach and impact.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founder & CEO Section -->
+    <div class="founder-section reveal">
+      <div class="about-grid" style="align-items: flex-start;">
+        <div class="founder-text">
+          <div class="section-tag">The Visionary</div>
+          <h2 class="section-title">About the Founder & CEO</h2>
+          <p class="section-sub"><strong>Retsum George</strong> is the Founder and Chief Executive Officer of GEORGEL Cancer Foundation. Her journey into cancer advocacy is deeply personal, born from the loss of her brother and the witnessed physical, emotional, and financial toll on her family.</p>
+          <p class="section-sub">Rather than allowing that loss to remain a painful memory, Retsum chose to turn it into purpose. GEORGEL was created to ensure no one faces cancer alone, offering education, advocacy, and safe spaces through support groups.</p>
+          <p class="section-sub">While her personal faith provides strength, the foundation is built on inclusivity, welcoming individuals from all backgrounds. Her vision is to bridge the gap between awareness and access to care, restoring hope to every life touched by cancer.</p>
+        </div>
+        <div class="founder-img-container">
+          <div class="founder-img-wrapper">
+            <img src="img/trustee1ceo.jpeg" alt="Retsum George">
+          </div>
+          <div class="founder-tag">
+            <p>Retsum George</p>
+            <span>Founder / CEO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Board of Trustees Section -->
+    <div class="trustees-section reveal">
+      <div class="section-tag">Leadership</div>
+      <h2 class="section-title">Board of Trustees</h2>
+      <p class="section-sub" style="margin-bottom: 40px;">Our board is comprised of dedicated professionals who provide strategic oversight and medical expertise to the GEORGEL Cancer Foundation.</p>
+
+      <div class="trustees-grid">
+        <div class="trustee-card">
+          <div class="trustee-img" style="border-color: var(--teal);">
+            <img src="img/trustee2 Dr Samuel Kwis.jpeg" alt="Dr. Samuel Kwis">
+          </div>
+          <h3>Dr. Samuel Kwis</h3>
+          <span class="trustee-role">Trustee</span>
+          <p class="trustee-bio">Dr. Samuel Kwis is a <strong>Consultant Radiologist and Clinical Oncologist</strong>, bringing medical expertise in cancer diagnosis and treatment to GEORGEL.</p>
+          <p class="trustee-bio" style="margin-top: 10px;">He plays a vital role in guiding our health-focused initiatives, ensuring they are medically informed and aligned with best practices.</p>
+        </div>
+
+        <div class="trustee-card">
+          <div class="trustee-img" style="border-color: var(--pink);">
+            <img src="img/trustee3 Dr. Bwatyum.jpeg" alt="Dr. Bwatyum Annah Gyang">
+          </div>
+          <h3>Dr. Bwatyum Annah Gyang</h3>
+          <span class="trustee-role" style="color: var(--pink);">Trustee</span>
+          <p class="trustee-bio">Dr. Bwatyum Annah Gyang is a <strong>Consultant Psychiatrist at JUTH</strong>, with a specialized focus on <strong>psycho-oncology</strong>—the emotional impact of cancer.</p>
+          <p class="trustee-bio" style="margin-top: 10px;">As a trustee, she ensures our patients are supported psychologically throughout their journey, advocating for mental health in recovery.</p>
+        </div>
+
+        <div class="trustee-card">
+          <div class="trustee-img" style="border-color: var(--teal);">
+            <img src="img/trustee4 Nurse Christy.jpeg" alt="Nurse Christy Yilwatda Ngwan">
+          </div>
+          <h3>Nurse Christy Yilwatda Ngwan</h3>
+          <span class="trustee-role">Trustee</span>
+          <p class="trustee-bio">Nurse Ngwan is deeply committed to <strong>advancing oncology care</strong> and mentoring healthcare providers across the North Central region.</p>
+          <p class="trustee-bio" style="margin-top: 10px;">She is a passionate advocate for improved support systems, ensuring that no one faces cancer alone through mentorship and community outreach.</p>
+        </div>
+
+        <div class="trustee-card">
+          <div class="trustee-img" style="border-color: var(--teal);">
+            <img src="img/trustee6 Danjuma.jpeg" alt="Danjuma Nabara Atuski">
+          </div>
+          <h3>Danjuma Nabara Atuski</h3>
+          <span class="trustee-role">Programs Manager</span>
+          <p class="trustee-bio">Danjuma Nabara Atuski is a <strong>Human Resources Management expert</strong> with a passion for workplace wellness and public health advocacy.</p>
+          <p class="trustee-bio" style="margin-top: 10px;">As Programs Manager, he drives strategic partnerships and builds sustainable models that engage workplaces as platforms for cancer education.</p>
+        </div>
+
+        <div class="trustee-card">
+          <div class="trustee-img" style="border-color: var(--navy);">
+            <img src="img/trustee7 Gonler Dakom.jpeg" alt="Gonler Dakom Simon">
+          </div>
+          <h3>Gonler Dakom Simon</h3>
+          <span class="trustee-role" style="color: var(--navy);">Board Member &amp; Secretary</span>
+          <p class="trustee-bio">Gonler Dakom Simon is an <strong>Information Technology Specialist</strong> who ensures the foundation’s operational and digital effectiveness.</p>
+          <p class="trustee-bio" style="margin-top: 10px;">In his role as Secretary, he supports effective coordination, documentation, and organizational governance, ensuring accountability and professionalism.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-extended reveal">
+      <p class="section-sub" style="max-width: 100%;">Since our inception, we have carried out impactful initiatives. We partner with government parastatals, media houses, and hospitals to facilitate essential screening and advocacy. During <strong>Pink October</strong>, we lead extensive breast and cervical cancer awareness campaigns. We are proud to be officially registered with the <strong>Nigerian Cancer Society</strong>, aligning our work with national standards.</p>
+      <p class="section-sub" style="max-width: 100%; margin-top: 12px;">On February 17th, we presented research on the psychosocial impact of cancer on caregivers and participated in the North Central Mega Rally. We also donated premedication supplies to the Jos University Teaching Hospital Radio Oncology Unit.</p>
+      
+      <h3 style="margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--navy);">Looking Ahead</h3>
+      <p class="section-sub" style="max-width: 100%;">As the year progresses, we continue to extend our outreach to local government areas, churches, mosques, schools, and rural communities. Our vision is to strengthen cancer care and health education across Plateau State and the North Central region of Nigeria.</p>
+      
+      <div class="info-alert">
+        <p><strong>Learn more:</strong> <a href="http://www.GEORGELcancerfoundation.org" target="_blank">www.GEORGELcancerfoundation.org</a> (Under Development)</p>
+        <p><strong>Inquiries:</strong> <a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></p>
       </div>
     </div>
   </div>
@@ -561,6 +911,27 @@
   </div>
 </section>
 
+<!-- SPLIT CTA SECTION -->
+<section class="split-cta" style="padding: 0; display: grid; grid-template-columns: 1fr 1fr;">
+  <a href="#donate" class="cta-block donate-cta" style="padding: 100px 40px; background: var(--teal); color: #fff; text-decoration: none; text-align: center; transition: 0.4s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+    <div style="font-size: 3rem;">❤️</div>
+    <h2 style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0;">Make a Donation</h2>
+    <p style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; margin: 0;">Your financial support directly funds screenings and patient care across Nigeria.</p>
+    <div class="cta-btn-mini" style="margin-top: 10px; border: 2px solid #fff; padding: 12px 30px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Support Us →</div>
+  </a>
+  <a href="#contact" class="cta-block involve-cta" style="padding: 100px 40px; background: var(--navy); color: #fff; text-decoration: none; text-align: center; transition: 0.4s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+    <div style="font-size: 3rem;">🤝</div>
+    <h2 style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0;">Get Involved</h2>
+    <p style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; margin: 0;">Join our team of volunteers or partner with us to expand our life-saving impact.</p>
+    <div class="cta-btn-mini" style="margin-top: 10px; border: 2px solid #fff; padding: 12px 30px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Partner With Us →</div>
+  </a>
+</section>
+
+<style>
+  .cta-block:hover { transform: scale(1.02); z-index: 10; filter: brightness(1.1); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+  @media (max-width: 900px) { .split-cta { grid-template-columns: 1fr; } .cta-block { padding: 80px 20px !important; } }
+</style>
+
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -568,10 +939,11 @@
       <div class="footer-tagline">Spreading Hope, Saving Lives</div>
       <p>Fighting cancer through awareness, early detection, advocacy, and community partnerships across Nigeria. Together, we can save lives.</p>
       <div class="footer-social">
-        <a href="#" class="social-btn">f</a>
-        <a href="#" class="social-btn">𝕏</a>
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">💬</a>
+        <a href="#" class="social-btn fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-btn x-twitter" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-btn ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn ln" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://wa.me/2348032585419" class="social-btn wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -592,6 +964,15 @@
     <span>Spreading Hope, Saving Lives &nbsp;·&nbsp; <a href="#">Privacy Policy</a></span>
   </div>
 </footer>
+
+<style>
+  .social-btn.fb:hover { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .social-btn.x-twitter:hover { background: #000000 !important; border-color: #000000 !important; }
+  .social-btn.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important; border-color: transparent !important; }
+  .social-btn.ln:hover { background: #0077b5 !important; border-color: #0077b5 !important; }
+  .social-btn.wa:hover { background: #25D366 !important; border-color: #25D366 !important; }
+  .social-btn i { font-size: 1.1rem; color: #fff; }
+</style>
 
 <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
   <div class="lightbox-inner">
