@@ -43,8 +43,7 @@
   .nav-links li { position: relative; }
   .nav-links a { text-decoration: none; color: var(--navy); font-size: .85rem; font-weight: 600; transition: color .3s; position: relative; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 0; }
   .nav-links a:hover { color: var(--teal); }
-  
-  /* ── DROPDOWN STYLES ── */
+
   .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: var(--shadow-md); border-radius: 4px; padding: 15px 0; display: none; flex-direction: column; z-index: 1002; border: 1px solid var(--border); }
   .dropdown-menu li { width: 100%; }
   .dropdown-menu a { padding: 10px 25px; display: block; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--gray-mid); border: none; text-transform: uppercase; }
@@ -54,294 +53,303 @@
   .nav-cta { background: var(--teal) !important; color: #fff !important; padding: 10px 24px !important; border-radius: 2px; font-weight: 700 !important; transition: all .3s !important; border: 1px solid var(--teal); }
   .nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
 
-  /* ── HERO ── */
-  .hero { min-height: 100vh; background: linear-gradient(135deg, rgba(0,105,92,0.92) 0%, rgba(26,58,92,0.85) 55%, rgba(0,0,0,0.65) 100%), url('img/img4.jpg') center/cover no-repeat; display: flex; align-items: center; padding: 100px 60px 100px; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 120px; background: #fff; clip-path: ellipse(60% 100% at 50% 100%); }
-  .hero-content { max-width: 760px; color: #fff; animation: fadeUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) both; }
+  /* hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
+  @media(max-width:900px) {
+    nav { padding: 0 24px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; position: absolute; top: 84px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); z-index: 999; }
+    .nav-links.open { display: flex; }
+    .dropdown-menu { position: static; box-shadow: none; border: none; padding: 0 0 0 16px; display: flex !important; }
+  }
+
+  /* ── HERO CAROUSEL ── */
+  .hero-carousel { height: 100vh; position: relative; overflow: hidden; background: var(--navy); }
+  .carousel-container { height: 100%; width: 100%; }
+  .slide { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; padding: 0 10%; }
+  .slide.active { opacity: 1; z-index: 1; }
+  .hero-content { max-width: 800px; color: #fff; z-index: 2; }
   .hero-name-georgel { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(3.5rem,8.5vw,6rem); font-weight: 800; color: #fff; line-height: 0.85; letter-spacing: 0.06em; text-transform: uppercase; text-shadow: 0 4px 12px rgba(0,0,0,0.25); }
   .hero-name-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: clamp(.9rem,2vw,1.25rem); font-weight: 400; color: #7ec8c0; letter-spacing: .5em; text-transform: uppercase; margin-top: 16px; opacity: 0.9; }
-  .hero-location { font-size: .75rem; color: rgba(255,255,255,0.45); letter-spacing: .15em; text-transform: uppercase; margin-top: 10px; font-weight: 600; }
-  .hero-divider { width: 80px; height: 4px; background: var(--pink); border-radius: 2px; margin: 36px 0; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem,3.2vw,2.4rem); font-weight: 400; font-style: italic; line-height: 1.35; margin-bottom: 28px; color: rgba(255,255,255,0.95); letter-spacing: 0.01em; }
-  .hero h1 em { font-style: italic; color: #f8bbd9; font-weight: 600; }
-  .hero p { font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 44px; max-width: 620px; font-weight: 300; }
-  .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 1.5rem; animation: bounce 2s infinite; opacity: 0.6; }
+  .hero-divider { background: var(--teal); height: 4px; width: 60px; margin: 20px 0; border-radius: 2px; }
+  .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem,3.2vw,2.4rem); font-weight: 400; font-style: italic; line-height: 1.35; margin-bottom: 28px; color: rgba(255,255,255,0.95); }
+  .hero-content h1 em { font-style: italic; color: #f8bbd9; font-weight: 600; }
+  .hero-content p { font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 40px; max-width: 620px; font-weight: 300; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+  .btn-primary { background: var(--teal); color: #fff; padding: 16px 36px; border-radius: 4px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
+  .btn-outline-white { border: 2px solid #fff; color: #fff; padding: 14px 34px; border-radius: 4px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+  .carousel-controls { position: absolute; bottom: 40px; right: 10%; z-index: 10; display: flex; gap: 15px; }
+  .carousel-controls button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: 0.3s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+  .carousel-controls button:hover { background: var(--teal); border-color: var(--teal); }
+  @media(max-width:768px) {
+    .slide { padding: 0 24px; justify-content: center; text-align: center; }
+    .hero-content { margin-bottom: 60px; }
+    .carousel-controls { right: 50%; transform: translateX(50%); bottom: 20px; }
+    .hero-actions { justify-content: center; }
+  }
 
-  @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);} 40% {transform: translateY(-10px) translateX(-50%);} 60% {transform: translateY(-5px) translateX(-50%);} }
-
-  /* ── STATS ── */
-  .stats-band { background: #fff; border-bottom: 1px solid var(--border); padding: 80px 40px; }
-  .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; text-align: center; }
-  .stat-item { padding: 20px; border-right: 1px solid var(--border); transition: all 0.4s ease; }
-  .stat-item:hover { transform: translateY(-5px); }
-  .stat-item:last-child { border-right: none; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 12px; }
-  .stat-label { font-size: .8rem; color: var(--gray-mid); letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+  /* ── FLOATING SOCIAL SIDEBAR ── */
+  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
+  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; border-radius: 0 4px 4px 0; }
+  .social-side-link:hover { width: 54px; padding-left: 10px; }
+  .social-side-link.facebook { background: #3b5998; }
+  .social-side-link.instagram { background: #e4405f; }
+  .social-side-link.x-twitter { background: #000; }
+  .social-side-link.tiktok { background: #010101; }
+  .social-side-link.whatsapp { background: #25d366; }
+  @media(max-width:768px) { .social-sidebar { display: none; } }
 
   /* ── SECTIONS ── */
-  section { padding: 140px 60px; }
+  section { padding: 100px 60px; }
   .section-inner { max-width: 1240px; margin: 0 auto; }
   .section-tag { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--teal); border-left: 5px solid var(--teal); padding-left: 14px; margin-bottom: 24px; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.5rem); font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.01em; }
-  .section-sub { font-size: 1.05rem; color: var(--gray-mid); line-height: 1.8; max-width: 600px; font-weight: 400; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4.5vw,3.2rem); font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 24px; }
+  .section-sub { font-size: 1rem; color: var(--gray-mid); line-height: 1.8; max-width: 600px; font-weight: 400; }
 
-  /* ── ABOUT & MANDATE ── */
+  /* ── ABOUT ── */
   #about { background: var(--teal-pale); }
-  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 100px; align-items: center; }
-  .about-img-stack { position: relative; height: 560px; }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+  .about-img-stack { position: relative; height: 520px; }
   .about-img-main { position: absolute; top: 0; left: 0; width: 85%; height: 85%; object-fit: cover; border-radius: 4px; box-shadow: var(--shadow-md); }
   .about-img-accent { position: absolute; bottom: 0; right: 0; width: 55%; height: 55%; object-fit: cover; border-radius: 4px; border: 8px solid #fff; box-shadow: var(--shadow-md); }
-  .about-ribbon { position: absolute; top: 40px; right: 10px; background: var(--teal); color: #fff; padding: 12px 20px; border-radius: 2px; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; z-index: 2; box-shadow: 0 8px 24px rgba(0,137,123,0.2); }
+  .about-ribbon { position: absolute; top: 40px; right: 10px; background: var(--teal); color: #fff; padding: 12px 20px; border-radius: 2px; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; z-index: 2; }
   .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-  .pillar { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s ease; }
+  .pillar { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 20px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.3s; }
   .pillar:hover { box-shadow: var(--shadow-md); border-color: var(--teal); transform: translateY(-3px); }
-  .pillar-icon { font-size: 1.6rem; flex-shrink: 0; }
-  .pillar strong { display: block; font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; letter-spacing: 0.01em; }
-  .pillar p { font-size: .88rem; color: var(--gray-mid); line-height: 1.6; }
+  .pillar-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .pillar strong { display: block; font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .pillar p { font-size: .85rem; color: var(--gray-mid); line-height: 1.5; }
 
-  .mandate-section { margin-top: 80px; padding: 60px; background: #fff; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
-  .mandate-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
-  .mandate-top-grid h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--navy); line-height: 1.3; font-weight: 600; }
-  .mandate-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
-  .objectives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-  .obj-item { padding: 20px; transition: transform 0.3s ease; }
-  .obj-item:hover { transform: translateY(-5px); }
-  .obj-item div { font-size: 1.8rem; margin-bottom: 15px; }
-  .obj-item h4 { font-size: 1rem; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
-  .obj-item p { font-size: 0.9rem; color: var(--gray-mid); line-height: 1.6; }
+  /* ── MANDATE ── */
+  .mandate-section { margin-top: 80px; padding: 56px; background: #fff; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .mandate-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+  .mandate-top-grid h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); line-height: 1.4; font-weight: 600; }
+  .mandate-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+  .objectives-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .obj-item { padding: 20px; transition: transform 0.3s; }
+  .obj-item:hover { transform: translateY(-4px); }
+  .obj-item div { font-size: 1.8rem; margin-bottom: 12px; }
+  .obj-item h4 { font-size: .95rem; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
+  .obj-item p { font-size: .88rem; color: var(--gray-mid); line-height: 1.6; }
 
+  /* ── FOUNDER ── */
   .founder-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
-  .founder-img-container { position: relative; max-width: 440px; margin-left: auto; }
+  .founder-img-container { position: relative; max-width: 420px; margin-left: auto; }
   .founder-img-wrapper { width: 100%; aspect-ratio: 4/5; background: var(--gray-light); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
-  .founder-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .founder-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
   .founder-img-wrapper:hover img { transform: scale(1.03); }
   .founder-tag { position: absolute; bottom: -20px; right: -20px; background: var(--navy); color: #fff; padding: 20px; border-radius: 4px; box-shadow: var(--shadow-md); z-index: 10; }
-  .founder-tag p { font-weight: 700; font-size: 1.1rem; margin: 0; }
-  .founder-tag span { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }
+  .founder-tag p { font-weight: 700; font-size: 1rem; margin: 0; }
+  .founder-tag span { font-size: 0.78rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }
 
+  /* ── TRUSTEES ── */
   .trustees-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
-  .trustees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-  .trustee-card { background: #fff; padding: 40px 30px; border-radius: 8px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden; }
-  .trustee-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--teal-light); }
+  .trustees-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 28px; }
+  .trustee-card { background: #fff; padding: 36px 28px; border-radius: 8px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: all 0.4s; position: relative; overflow: hidden; }
+  .trustee-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
   .trustee-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--teal); opacity: 0; transition: opacity 0.3s; }
   .trustee-card:hover::before { opacity: 1; }
-  .trustee-img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 24px; border: 3px solid var(--teal-pale); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .trustee-img { width: 110px; height: 110px; border-radius: 50%; margin-bottom: 20px; overflow: hidden; border: 3px solid var(--teal-pale); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
   .trustee-img img { width: 100%; height: 100%; object-fit: cover; }
-  .trustee-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; color: var(--navy); margin-bottom: 6px; }
-  .trustee-role { font-size: 0.82rem; color: var(--teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; display: block; }
-  .trustee-bio { font-size: 0.92rem; color: var(--gray-mid); line-height: 1.7; }
+  .trustee-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 6px; }
+  .trustee-role { font-size: 0.8rem; color: var(--teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; display: block; }
+  .trustee-bio { font-size: 0.9rem; color: var(--gray-mid); line-height: 1.7; }
 
-  .about-extended { margin-top: 60px; background: var(--white); padding: 40px; border-radius: 8px; border: 1px solid var(--border); }
-  .info-alert { margin-top: 30px; padding: 20px; background: var(--teal-pale); border-left: 4px solid var(--teal); border-radius: 4px; display: flex; flex-direction: column; gap: 8px; }
+  .about-extended { margin-top: 60px; background: #fff; padding: 40px; border-radius: 8px; border: 1px solid var(--border); }
+  .info-alert { margin-top: 24px; padding: 20px; background: var(--teal-pale); border-left: 4px solid var(--teal); border-radius: 4px; }
   .info-alert a { color: var(--teal); text-decoration: none; font-weight: 600; }
+
+  /* ── BANK DETAILS ── */
+  #bank-details { background: var(--teal-pale); }
+  .bank-card { max-width: 680px; margin: 0 auto; background: #fff; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-md); overflow: hidden; }
+  .bank-header { background: var(--navy); color: #fff; padding: 28px 36px; text-align: center; }
+  .bank-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 6px; }
+  .bank-header p { font-size: .85rem; opacity: .75; }
+  .bank-body { padding: 36px; }
+  .bank-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-label { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--gray-mid); margin-bottom: 4px; }
+  .bank-value { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+  .bank-acct { font-size: 1.5rem; font-weight: 800; color: var(--teal); letter-spacing: .08em; }
+  .copy-btn { background: var(--teal); color: #fff; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: .82rem; font-weight: 700; letter-spacing: .06em; transition: 0.3s; }
+  .copy-btn:hover { background: var(--teal-dark); }
+  .bank-note { text-align: center; margin-top: 28px; font-size: .88rem; color: var(--gray-mid); font-style: italic; }
+  .bank-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+  .bank-imgs img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: var(--shadow-sm); }
 
   /* ── GALLERY ── */
   #activities { background: #fff; }
-  .activities-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; flex-wrap: wrap; gap: 32px; }
-  .filter-tabs { display: flex; gap: 12px; flex-wrap: wrap; }
-  .filter-tab { padding: 10px 22px; border-radius: 2px; font-size: .8rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--gray-mid); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.05em; }
+  .activities-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; flex-wrap: wrap; gap: 28px; }
+  .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .filter-tab { padding: 10px 20px; border-radius: 2px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--gray-mid); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.05em; }
   .filter-tab.active, .filter-tab:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; grid-auto-flow: dense; }
-  .gallery-card { border-radius: 4px; overflow: hidden; background: #fff; border: 1px solid var(--border); transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; box-shadow: var(--shadow-sm); }
-  .gallery-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(26,58,92,0.12); border-color: var(--teal-light); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; grid-auto-flow: dense; }
+  .gallery-card { border-radius: 4px; overflow: hidden; background: #fff; border: 1px solid var(--border); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; box-shadow: var(--shadow-sm); }
+  .gallery-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(26,58,92,0.10); border-color: var(--teal-light); }
   .gallery-card.featured { grid-column: span 2; }
   .card-img { position: relative; overflow: hidden; aspect-ratio: 16/10; }
-  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
   .gallery-card:hover .card-img img { transform: scale(1.05); }
-  .card-tag-overlay { position: absolute; top: 16px; left: 16px; background: var(--teal); color: #fff; padding: 6px 14px; border-radius: 2px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; z-index: 2; }
+  .card-tag-overlay { position: absolute; top: 14px; left: 14px; background: var(--teal); color: #fff; padding: 5px 12px; border-radius: 2px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; z-index: 2; }
   .card-tag-overlay.pink { background: var(--pink); }
-  .card-body { padding: 28px; }
-  .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.25; }
-  .card-body p { font-size: .9rem; color: var(--gray-mid); line-height: 1.7; }
-  .card-meta { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: .8rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .card-body { padding: 24px; }
+  .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .card-body p { font-size: .88rem; color: var(--gray-mid); line-height: 1.65; }
+  .card-meta { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: .78rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  /* ── PARTNERS, DONATE, CONTACT, FOOTER ── */
-  .partners-strip { background: var(--teal-pale); padding: 80px 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
-  .partners-strip h2 { font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; margin-bottom: 48px; }
-  .partners-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; max-width: 1100px; margin: 0 auto; }
-  .partner-badge { background: #fff; border: 1px solid var(--border); border-radius: 2px; padding: 14px 28px; font-size: .85rem; font-weight: 600; color: var(--navy); transition: all 0.3s; box-shadow: var(--shadow-sm); }
-  .partner-badge:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  /* ── PARTNERS ── */
+  .partners-strip { background: var(--teal-pale); padding: 72px 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+  .partners-strip h2 { font-size: .82rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; margin-bottom: 40px; }
+  .partners-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; max-width: 1100px; margin: 0 auto; }
+  .partner-badge { background: #fff; border: 1px solid var(--border); border-radius: 2px; padding: 12px 24px; font-size: .82rem; font-weight: 600; color: var(--navy); transition: all 0.3s; box-shadow: var(--shadow-sm); }
+  .partner-badge:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
 
+  /* ── DONATE ── */
   #donate { background: linear-gradient(135deg, var(--navy) 0%, #0d2b45 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
+  #donate .section-tag { color: #7ec8c0; border-color: #7ec8c0; }
+  #donate .section-title { color: #fff; }
+  #donate .section-sub { color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 48px; }
   .donate-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px; }
   .donate-card { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.15); border-radius: 8px; padding: 32px 24px; transition: all .2s; cursor: pointer; }
-  .donate-card:hover, .donate-card.highlighted { background: rgba(255,255,255,.14); border-color: var(--teal); transform: translateY(-2px); }
-  .donate-card.highlighted { border-color: #7ec8c0; box-shadow: 0 8px 32px rgba(0,137,123,.2); }
-  .donate-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: #7ec8c0; margin-bottom: 6px; }
+  .donate-card:hover, .donate-card.highlighted { background: rgba(255,255,255,.14); border-color: var(--teal); transform: translateY(-4px); }
+  .donate-card.highlighted { border-color: #7ec8c0; box-shadow: 0 8px 32px rgba(0,137,123,.25); }
+  .donate-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: #7ec8c0; margin-bottom: 8px; }
+  .donate-label { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.9); margin-bottom: 14px; }
+  .donate-impact { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.6; }
+  .donate-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .btn-donate { background: var(--teal); color: #fff; padding: 16px 40px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 1rem; letter-spacing: .04em; transition: 0.3s; display: inline-block; }
+  .btn-donate:hover { background: var(--teal-dark); transform: translateY(-2px); }
+  .btn-outline-light { border: 2px solid rgba(255,255,255,.4); color: #fff; padding: 14px 36px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: 0.3s; display: inline-block; }
+  .btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,.08); }
 
+  /* ── CONTACT ── */
   #contact { background: #fff; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start; }
+  .contact-items { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+  .c-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .c-detail strong { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); font-weight: 700; margin-bottom: 2px; }
+  .c-detail span, .c-detail a { font-size: .95rem; color: var(--navy); text-decoration: none; }
+  .c-detail a:hover { color: var(--teal); }
   .contact-form { background: var(--gray-light); border-radius: 10px; padding: 40px; border: 1px solid var(--border); }
+  .contact-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--navy); margin-bottom: 8px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: .95rem; color: var(--navy); background: #fff; transition: border-color 0.3s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); }
+  .form-group textarea { min-height: 130px; resize: vertical; }
+  .btn-submit { background: var(--teal); color: #fff; border: none; padding: 16px 36px; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
+  .btn-submit:hover { background: var(--teal-dark); }
 
+  /* ── SPLIT CTA ── */
+  .split-cta { display: grid; grid-template-columns: 1fr 1fr; }
+  .cta-block { padding: 100px 40px; color: #fff; text-decoration: none; text-align: center; transition: 0.4s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+  .cta-block.donate-cta { background: var(--teal); }
+  .cta-block.involve-cta { background: var(--navy); }
+  .cta-block:hover { filter: brightness(1.08); }
+  .cta-block h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0; }
+  .cta-block p { font-size: 1rem; opacity: 0.9; max-width: 360px; margin: 0; }
+  .cta-btn-mini { margin-top: 8px; border: 2px solid #fff; padding: 12px 28px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: .85rem; }
+
+  /* ── FOOTER ── */
   footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 72px 40px 32px; }
-  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-logo { height: 52px; width: auto; margin-bottom: 16px; }
+  .footer-tagline { font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 12px; }
+  .footer-brand p { font-size: .88rem; line-height: 1.7; }
+  .footer-col h4 { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: #fff; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color 0.3s; }
+  .footer-col ul li a:hover { color: #7ec8c0; }
+  .footer-social { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .95rem; text-decoration: none; color: #fff; transition: all 0.3s; }
+  .social-btn:hover { transform: translateY(-3px); }
+  .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
+  .social-btn.tw:hover { background: #000; border-color: #000; }
+  .social-btn.ig:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: transparent; }
+  .social-btn.tt:hover { background: #010101; border-color: #010101; }
+  .social-btn.wa:hover { background: #25D366; border-color: #25D366; }
+  .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
+  .footer-bottom a { color: rgba(255,255,255,.5); text-decoration: none; }
+  .footer-bottom a:hover { color: #7ec8c0; }
 
-  /* ── FLOATING SOCIAL BAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
-  .social-sidebar a { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
-  .social-sidebar a:hover { width: 58px; padding-left: 10px; }
-  .social-sidebar .facebook { background: #3b5998; }
-  .social-sidebar .instagram { background: #e1306c; }
-  .social-sidebar .x-twitter { background: #000000; }
-  .social-sidebar .whatsapp { background: #25d366; }
+  /* ── PINK OCTOBER ── */
+  #pink-october { background: linear-gradient(135deg,#fff0fa 0%,#fce4f3 100%); }
+  .pink-hero-img { border-radius: 10px; overflow: hidden; margin-bottom: 24px; cursor: pointer; box-shadow: 0 8px 40px rgba(233,30,140,.15); }
+  .pink-hero-img img { width: 100%; height: 460px; object-fit: cover; display: block; transition: transform .35s; }
+  .pink-hero-img:hover img { transform: scale(1.02); }
+  .pink-grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .pink-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 16px; }
+  .pink-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .pink-thumb { border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  .pink-thumb img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform .3s; }
+  .pink-thumb:hover img { transform: scale(1.04); }
+  .pink-thumb.tall img { height: 280px; }
+  .pink-quote { text-align: center; margin-top: 36px; padding: 28px; background: #fff; border-radius: 8px; border: 1px solid var(--border); }
+  .pink-quote p:first-child { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); font-style: italic; margin-bottom: 8px; }
+  .pink-quote p:last-child { font-size: .8rem; color: var(--gray-mid); letter-spacing: .06em; text-transform: uppercase; }
 
-  @media(max-width: 768px) { .social-sidebar { display: none; } }
-
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 12px; }
-  .side-icon { width: 44px; height: 44px; background: #fff; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--navy); text-decoration: none; font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: var(--shadow-sm); }
-  .side-icon:hover { transform: scale(1.1) translateX(5px); background: var(--teal); color: #fff; border-color: var(--teal); box-shadow: 0 8px 20px rgba(0,137,123,0.2); }
-  .side-icon.whatsapp:hover { background: #25D366; border-color: #25D366; }
-  .side-icon.facebook:hover { background: #1877F2; border-color: #1877F2; }
-  .side-icon.instagram:hover { background: #E4405F; border-color: #E4405F; }
-
-  @media(max-width: 1024px) { .social-sidebar { display: none; } }
-
-  /* ── SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; }
-  .social-sidebar a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.3s; font-size: 1.1rem; }
-  .social-sidebar .fb { background: #3b5998; }
-  .social-sidebar .tw { background: #000000; }
-  .social-sidebar .ig { background: #e1306c; }
-  .social-sidebar .wa { background: #25d366; }
-  .social-sidebar a:hover { width: 54px; padding-left: 10px; }
-
-  @media(max-width: 768px) { .social-sidebar { display: none; } }
-
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
-  .social-sidebar a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
-  .social-sidebar a:hover { width: 54px; padding-left: 10px; }
-  .social-sidebar .facebook { background: #3b5998; }
-  .social-sidebar .instagram { background: #e1306c; }
-  .social-sidebar .x-twitter { background: #000; }
-  .social-sidebar .whatsapp { background: #25d366; }
-
-  @media(max-width: 768px) { .social-sidebar { display: none; } }
-
-  /* ── STICKY SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
-  .social-side-link { width: 44px; height: 44px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem; border-radius: 0 4px 4px 0; }
-  .social-side-link:hover { width: 54px; background: var(--teal); padding-left: 10px; }
-  .social-side-link.facebook:hover { background: #3b5998; }
-  .social-side-link.twitter:hover { background: #000; }
-  .social-side-link.instagram:hover { background: #e1306c; }
-  .social-side-link.whatsapp:hover { background: #25d366; }
-
-  @media(max-width: 768px) { .social-sidebar { display: none; } }
-
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
-  .social-sidebar a { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease; border-radius: 0 4px 4px 0; }
-  .social-sidebar a:hover { width: 58px; padding-left: 10px; }
-  .social-sidebar .facebook { background: #3b5998; }
-  .social-sidebar .instagram { background: #e1306c; }
-  .social-sidebar .x-twitter { background: #000000; }
-  .social-sidebar .whatsapp { background: #25d366; }
-
-  @media(max-width: 768px) { .social-sidebar { display: none; } }
-
-  /* ── LIGHTBOX & REVEAL ── */
+  /* ── LIGHTBOX ── */
   .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 9999; align-items: center; justify-content: center; padding: 40px; }
   .lightbox.open { display: flex; }
   .lightbox-inner { background: #fff; border-radius: 10px; max-width: 720px; width: 100%; overflow: hidden; position: relative; animation: scaleIn .25s ease; }
-  
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
-  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
-  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
-  .social-side-link.facebook { background: #3b5998; }
-  .social-side-link.x-twitter { background: #000; }
-  .social-side-link.instagram { background: #e4405f; }
-  .social-side-link.whatsapp { background: #25d366; }
+  .lightbox-inner img { width: 100%; max-height: 480px; object-fit: cover; display: block; }
+  .lightbox-body { padding: 24px 28px; }
+  .lightbox-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 8px; }
+  .lightbox-body p { font-size: .9rem; color: var(--gray-mid); line-height: 1.6; }
+  .lightbox-close { position: absolute; top: 14px; right: 14px; background: rgba(0,0,0,.5); color: #fff; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-  @media(max-width:768px) { .social-sidebar { display: none; } }
-
-  /* ── SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
-  .side-icon { width: 44px; height: 44px; background: #fff; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--navy); box-shadow: var(--shadow-sm); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-  .side-icon:hover { transform: scale(1.1) translateX(-5px); color: #fff; }
-  .side-icon.fb:hover { background: #1877F2; border-color: #1877F2; }
-  .side-icon.tw:hover { background: #000000; border-color: #000000; }
-  .side-icon.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-color: transparent; }
-  .side-icon.wa:hover { background: #25D366; border-color: #25D366; }
-
-  /* ── FOOTER UPDATES ── */
-  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
-  .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: all 0.3s ease; }
-  .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-  .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
-  .social-btn.tw:hover { background: #000000; border-color: #000000; }
-  .social-btn.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-color: transparent; }
-  
-  @media(max-width:900px){
-    .social-sidebar { display: none; }
-  }
-
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
-  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
-  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
-  .social-side-link.facebook { background: #3b5998; }
-  .social-side-link.x-twitter { background: #000; }
-  .social-side-link.instagram { background: #e4405f; }
-  .social-side-link.whatsapp { background: #25d366; }
-
-  @media(max-width:768px) { .social-sidebar { display: none; } }
-
-  /* ── FLOATING SOCIAL SIDEBAR ── */
-  .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
-  .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; background: var(--navy); border-radius: 0 4px 4px 0; }
-  .social-side-link:hover { width: 54px; padding-left: 10px; background: var(--teal); }
-  .social-side-link.facebook { background: #3b5998; }
-  .social-side-link.twitter { background: #000; }
-  .social-side-link.instagram { background: #e4405f; }
-  .social-side-link.whatsapp { background: #25d366; }
-
-  @media(max-width:768px) { .social-sidebar { display: none; } }
-
-  @keyframes fadeUp { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
   @keyframes scaleIn { from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);} }
-  .reveal { opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(0.165, 0.84, 0.44, 1), transform .8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(0.165,0.84,0.44,1),transform .8s cubic-bezier(0.165,0.84,0.44,1); }
   .reveal.visible { opacity:1; transform:translateY(0); }
 
+  /* ── RESPONSIVE ── */
   @media(max-width:900px){
-    nav{padding:0 24px;}
-    .hero{padding:100px 24px 60px;min-height:auto;}
-    .stats-grid{grid-template-columns:1fr 1fr;}
-    .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
-    .gallery-grid{grid-template-columns:1fr 1fr;}
-    .mandate-top-grid { grid-template-columns: 1fr; gap: 30px; }
-    .objectives-grid { grid-template-columns: 1fr 1fr; }
-    .founder-img-container { margin: 40px auto 0; }
+    section { padding: 72px 24px; }
+    .about-grid,.contact-grid { grid-template-columns:1fr; gap:40px; }
+    .gallery-grid { grid-template-columns:1fr 1fr; }
+    .gallery-card.featured { grid-column: span 1; }
+    .mandate-top-grid,.objectives-grid { grid-template-columns:1fr 1fr; }
+    .donate-cards { grid-template-columns:1fr; }
+    .split-cta { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+    .form-row { grid-template-columns:1fr; }
+    .pink-grid-4 { grid-template-columns:repeat(2,1fr); }
+    .about-img-stack { height: 380px; }
+    .founder-img-container { margin: 60px auto 0; }
   }
   @media(max-width:600px){
-    .gallery-grid{grid-template-columns:1fr;}
-    .about-pillars,.footer-grid,.objectives-grid{grid-template-columns:1fr;}
-    .mandate-section { padding: 30px 20px; }
+    .gallery-grid { grid-template-columns:1fr; }
+    .about-pillars { grid-template-columns:1fr; }
+    .objectives-grid { grid-template-columns:1fr; }
+    .mandate-top-grid { grid-template-columns:1fr; }
+    .pink-grid-2,.pink-grid-3,.pink-grid-4 { grid-template-columns:1fr 1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    .cta-block { padding: 72px 24px !important; }
   }
 </style>
 </head>
 <body>
 
-<body>
-
-<!-- Floating Social Sidebar -->
-<div class="social-sidebar" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column;">
-  <a href="#" class="side-social" style="background: #1877F2; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; border-radius: 0 4px 0 0;"><i class="fab fa-facebook-f"></i></a>
-  <a href="#" class="side-social" style="background: #E4405F; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
-  <a href="#" class="side-social" style="background: #0077b5; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-linkedin-in"></i></a>
-  <a href="#" class="side-social" style="background: #000; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;"><i class="fab fa-x-twitter"></i></a>
-  <a href="https://wa.me/2348032585419" class="side-social" style="background: #25D366; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; border-radius: 0 0 4px 0;"><i class="fab fa-whatsapp"></i></a>
+<!-- ── FLOATING SOCIAL SIDEBAR ── -->
+<div class="social-sidebar">
+  <a href="https://www.facebook.com/share/18UeNhysEq/?mibextid=wwXIfr" target="_blank" class="social-side-link facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.instagram.com/georgel_cf?igsh=MWl5dWdkcnlqdjg1Ng%3D%3D&utm_source=qr" target="_blank" class="social-side-link instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://x.com/georgel_cf?s=21&t=ErnogbDOxRH_9KhI0MVetA" target="_blank" class="social-side-link x-twitter" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://www.tiktok.com/@georgelcancerfoundation?_r=1&_t=ZS-95dOmEcpRdg" target="_blank" class="social-side-link tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+  <a href="https://wa.me/2348032585419" target="_blank" class="social-side-link whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
 
-<style>
-  .side-social:hover { width: 54px !important; padding-left: 10px; }
-  @media (max-width: 768px) { .social-sidebar { display: none !important; } }
-</style>
-
+<!-- ── TOPBAR ── -->
 <div class="topbar">🎗️ Spreading Hope, Saving Lives &nbsp;|&nbsp; World Cancer Day: February 4th &nbsp;|&nbsp; <a href="#donate">Support our mission →</a></div>
 
+<!-- ── NAV ── -->
 <nav id="mainNav">
   <a href="#home" class="nav-logo">
     <img src="img/logo.jpg" alt="GEORGEL Cancer Foundation" />
@@ -349,11 +357,11 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
     <li class="has-dropdown">
-      <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem; margin-left: 4px;"></i></a>
+      <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size:.6rem;margin-left:4px;"></i></a>
       <ul class="dropdown-menu">
         <li><a href="#about">Our Story</a></li>
-        <li><a href="#mandate">Vision &amp; Mission</a></li>
-        <li><a href="#mandate">Strategic Objectives</a></li>
+        <li><a href="#about">Vision &amp; Mission</a></li>
+        <li><a href="#about">Strategic Objectives</a></li>
         <li><a href="#trustees">Board of Trustees</a></li>
       </ul>
     </li>
@@ -366,29 +374,45 @@
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- IMPACT CAROUSEL HERO -->
-<section class="hero-carousel" id="home">
+<!-- ── HOME / HERO CAROUSEL ── -->
+<section class="hero-carousel" id="home" style="padding:0;">
   <div class="carousel-container">
-    <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/outreach1.jpeg');">
+    <div class="slide active" style="background-image:linear-gradient(rgba(26,58,92,0.72),rgba(26,58,92,0.72)),url('img/outreach1.jpeg');">
       <div class="hero-content">
         <span class="hero-name-georgel">GEORGEL</span>
         <span class="hero-name-sub">Cancer Foundation</span>
+        <div class="hero-divider"></div>
         <h1><em>Saving Lives Through Early Detection.</em></h1>
         <p>Join our mission to provide free cancer screenings and compassionate support to communities across Nigeria.</p>
         <div class="hero-actions">
-          <a href="#activities" class="btn-primary" style="background:var(--teal); color:#fff; padding:16px 36px; border-radius:4px; text-decoration:none; font-weight:700; margin-right:16px;">Our Impact</a>
-          <a href="#donate" class="btn-outline-white" style="border:2px solid #fff; color:#fff; padding:14px 34px; border-radius:4px; text-decoration:none; font-weight:600;">Donate Now</a>
+          <a href="#about" class="btn-primary">Learn Our Story</a>
+          <a href="#activities" class="btn-outline-white">See Our Impact</a>
         </div>
       </div>
     </div>
-    <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/rally8.jpg');">
+    <div class="slide" style="background-image:linear-gradient(rgba(26,58,92,0.72),rgba(26,58,92,0.72)),url('img/rally8.jpg');">
       <div class="hero-content">
         <span class="hero-name-georgel">ADVOCACY</span>
         <span class="hero-name-sub">Community Presence</span>
+        <div class="hero-divider"></div>
         <h1><em>Breaking Stigma, Restoring Hope.</em></h1>
         <p>We are on the ground, engaging government and media to make cancer prevention a national priority.</p>
         <div class="hero-actions">
-          <a href="#about" class="btn-primary" style="background:var(--teal); color:#fff; padding:16px 36px; border-radius:4px; text-decoration:none; font-weight:700; margin-right:16px;">Learn More</a>
+          <a href="#about" class="btn-primary">Join The Movement</a>
+          <a href="#donate" class="btn-outline-white">Support Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:linear-gradient(rgba(26,58,92,0.72),rgba(26,58,92,0.72)),url('img/collab1.jpg');">
+      <div class="hero-content">
+        <span class="hero-name-georgel">TOGETHER</span>
+        <span class="hero-name-sub">World Cancer Day 2026</span>
+        <div class="hero-divider"></div>
+        <h1><em>Walking for a Cancer-Free Nigeria.</em></h1>
+        <p>United with Plateau State Government, the Nigerian Cancer Society and the Ministry of Health in the fight against cancer.</p>
+        <div class="hero-actions">
+          <a href="#activities" class="btn-primary">Our Activities</a>
+          <a href="#donate" class="btn-outline-white">Donate Now</a>
         </div>
       </div>
     </div>
@@ -399,64 +423,8 @@
   </div>
 </section>
 
-<style>
-  .hero-carousel { height: 100vh; position: relative; overflow: hidden; }
-  .carousel-container { height: 100%; width: 100%; }
-  .slide { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; padding: 0 60px; }
-  .slide.active { opacity: 1; z-index: 1; }
-  .carousel-controls { position: absolute; bottom: 40px; right: 60px; z-index: 10; display: flex; gap: 15px; }
-  .carousel-controls button { background: rgba(255,255,255,0.1); border: 1px solid #fff; color: #fff; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: 0.3s; font-size: 1.2rem; }
-  .carousel-controls button:hover { background: var(--teal); border-color: var(--teal); }
-  @media (max-width: 768px) { .slide { padding: 0 24px; text-align: center; } .carousel-controls { right: 50%; transform: translateX(50%); } }
-</style>
-
-<!-- BANK DETAILS SECTION -->
-<section id="bank-details" style="background: var(--gray-light); padding: 100px 40px; text-align: center; border-top: 1px solid var(--border);">
-  <div class="section-inner" style="max-width: 800px;">
-    <div class="section-tag">Direct Support</div>
-    <h2 class="section-title">Direct Bank Transfer</h2>
-    <p class="section-sub" style="margin: 0 auto 40px;">For direct contributions, sponsorships, or corporate partnerships, please use the foundation's official account details below.</p>
-    
-    <div style="background: #fff; padding: 40px; border-radius: 12px; box-shadow: var(--shadow-md); border: 1px solid var(--border); display: inline-block; width: 100%; max-width: 500px;">
-      <div style="margin-bottom: 25px;">
-        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Account Name</span>
-        <strong style="font-size: 1.3rem; color: var(--navy);">GEORGEL CANCER FOUNDATION</strong>
-      </div>
-      <div style="margin-bottom: 25px; position: relative;">
-        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Account Number</span>
-        <strong id="accNum" style="font-size: 2rem; color: var(--teal); letter-spacing: 0.05em;">XXXXXXXXXX</strong>
-        <button onclick="copyAcc()" style="display: block; margin: 10px auto 0; background: var(--teal-pale); border: 1px solid var(--teal); color: var(--teal); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.3s;">Copy Number</button>
-      </div>
-      <div>
-        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 5px;">Bank Name</span>
-        <strong style="font-size: 1.2rem; color: var(--navy);">YOUR BANK NAME HERE</strong>
-      </div>
-    </div>
-    <p style="margin-top: 30px; font-size: 0.85rem; color: var(--gray-mid); font-style: italic;">"Transparency is our foundation. Thank you for your trust and support."</p>
-  </div>
-</section>
-
-<script>
-  function copyAcc() {
-    const num = document.getElementById('accNum').innerText;
-    navigator.clipboard.writeText(num);
-    alert('Account Number Copied: ' + num);
-  }
-  
-  /* Carousel Logic */
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-  function showSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }
-  document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
-  document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
-  setInterval(() => showSlide(currentSlide + 1), 6000);
-</script>
-
-<section id="activities">
+<!-- ── ABOUT ── -->
+<section id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-img-stack reveal">
@@ -469,175 +437,105 @@
         <h2 class="section-title">A Foundation Built on Compassion &amp; Action</h2>
         <p class="section-sub">The GEORGEL Cancer Foundation is a non-governmental, nonprofit organization dedicated to raising cancer awareness, promoting early detection, and providing compassionate support to patients and caregivers. We are a formally registered entity with the Corporate Affairs Commission (CAC), incorporated on 26 August 2025 (Reg No: 8744109) in Nigeria.</p>
         <p class="section-sub" style="margin-top:12px;">Our work is guided by a clear mission: to ensure that individuals and communities are informed, empowered, and supported in the fight against cancer through education, prevention, screening access, and psychosocial care.</p>
-        
         <div class="about-pillars">
-          <div class="pillar">
-            <div class="pillar-icon">🧠</div>
-            <div><strong>Psychosocial Support</strong><p>Mental health for caregivers and families</p></div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🔗</div>
-            <div><strong>Support Systems</strong><p>Strengthening referral and community networks</p></div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🚫</div>
-            <div><strong>Reducing Stigma</strong><p>Combating misinformation about cancer</p></div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">📈</div>
-            <div><strong>Empowerment</strong><p>Livelihood support for patients and survivors</p></div>
-          </div>
+          <div class="pillar"><div class="pillar-icon">🧠</div><div><strong>Psychosocial Support</strong><p>Mental health for caregivers and families</p></div></div>
+          <div class="pillar"><div class="pillar-icon">🔗</div><div><strong>Support Systems</strong><p>Strengthening referral and community networks</p></div></div>
+          <div class="pillar"><div class="pillar-icon">🚫</div><div><strong>Reducing Stigma</strong><p>Combating misinformation about cancer</p></div></div>
+          <div class="pillar"><div class="pillar-icon">📈</div><div><strong>Empowerment</strong><p>Livelihood support for patients and survivors</p></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Core Mandate (Vision, Mission, Objectives) -->
-    <div class="mandate-section reveal">
+    <!-- Vision, Mission, Objectives -->
+    <div class="mandate-section reveal" id="mandate">
       <div class="mandate-top-grid">
-        <div class="mission-box">
-          <div class="mandate-label" style="color: var(--teal);">Our Mission</div>
+        <div>
+          <div class="mandate-label" style="color:var(--teal);">Our Mission</div>
           <h3>To ensure individuals and communities are informed, empowered, and supported through education, prevention, screening access, and psychosocial care.</h3>
         </div>
-        <div class="vision-box">
-          <div class="mandate-label" style="color: var(--pink);">Our Vision</div>
+        <div>
+          <div class="mandate-label" style="color:var(--pink);">Our Vision</div>
           <h3>A future where cancer care is accessible, stigma is eliminated, and hope is restored to every life touched by the disease.</h3>
         </div>
       </div>
-
-      <div class="objectives-header" style="text-align: center; margin-bottom: 40px;">
-        <div class="section-tag" style="border: none; padding: 0;">Our Strategic Objectives</div>
+      <div style="text-align:center;margin-bottom:36px;">
+        <div class="section-tag" style="border:none;padding:0;">Our Strategic Objectives</div>
       </div>
-
       <div class="objectives-grid">
-        <div class="obj-item">
-          <div>📢</div>
-          <h4>Awareness & Prevention</h4>
-          <p>Increasing public knowledge on early detection and preventive practices to reduce the national cancer burden.</p>
-        </div>
-        <div class="obj-item">
-          <div>🏥</div>
-          <h4>Screening Access</h4>
-          <p>Facilitating life-saving screening services through strategic partnerships with hospitals and health institutions.</p>
-        </div>
-        <div class="obj-item">
-          <div>⚖️</div>
-          <h4>Advocacy & Policy</h4>
-          <p>Engaging government parastatals and media to advocate for improved cancer care standards and legislation.</p>
-        </div>
-        <div class="obj-item">
-          <div>🤝</div>
-          <h4>Holistic Support</h4>
-          <p>Providing compassionate assistance and safe psychosocial spaces for patients, survivors, and their caregivers.</p>
-        </div>
-        <div class="obj-item">
-          <div>💰</div>
-          <h4>Resource Mobilization</h4>
-          <p>Securing financial and material aid to support underserved and rural populations with limited healthcare access.</p>
-        </div>
-        <div class="obj-item">
-          <div>🌍</div>
-          <h4>Global Impact</h4>
-          <p>Collaborating with like-minded global and local organizations to scale our reach and impact.</p>
-        </div>
+        <div class="obj-item"><div>📢</div><h4>Awareness &amp; Prevention</h4><p>Increasing public knowledge on early detection and preventive practices to reduce the national cancer burden.</p></div>
+        <div class="obj-item"><div>🏥</div><h4>Screening Access</h4><p>Facilitating life-saving screening services through strategic partnerships with hospitals and health institutions.</p></div>
+        <div class="obj-item"><div>⚖️</div><h4>Advocacy &amp; Policy</h4><p>Engaging government parastatals and media to advocate for improved cancer care standards and legislation.</p></div>
+        <div class="obj-item"><div>🤝</div><h4>Holistic Support</h4><p>Providing compassionate assistance and safe psychosocial spaces for patients, survivors, and their caregivers.</p></div>
+        <div class="obj-item"><div>💰</div><h4>Resource Mobilization</h4><p>Securing financial and material aid to support underserved and rural populations with limited healthcare access.</p></div>
+        <div class="obj-item"><div>🌍</div><h4>Global Impact</h4><p>Collaborating with like-minded global and local organizations to scale our reach and impact.</p></div>
       </div>
     </div>
 
-    <!-- Founder & CEO Section -->
+    <!-- Founder -->
     <div class="founder-section reveal">
-      <div class="about-grid" style="align-items: flex-start;">
-        <div class="founder-text">
+      <div class="about-grid" style="align-items:flex-start;">
+        <div>
           <div class="section-tag">The Visionary</div>
-          <h2 class="section-title">About the Founder & CEO</h2>
+          <h2 class="section-title">About the Founder &amp; CEO</h2>
           <p class="section-sub"><strong>Retsum George</strong> is the Founder and Chief Executive Officer of GEORGEL Cancer Foundation. Her journey into cancer advocacy is deeply personal, born from the loss of her brother and the witnessed physical, emotional, and financial toll on her family.</p>
-          <p class="section-sub">Rather than allowing that loss to remain a painful memory, Retsum chose to turn it into purpose. GEORGEL was created to ensure no one faces cancer alone, offering education, advocacy, and safe spaces through support groups.</p>
-          <p class="section-sub">While her personal faith provides strength, the foundation is built on inclusivity, welcoming individuals from all backgrounds. Her vision is to bridge the gap between awareness and access to care, restoring hope to every life touched by cancer.</p>
+          <p class="section-sub" style="margin-top:12px;">Rather than allowing that loss to remain a painful memory, Retsum chose to turn it into purpose. GEORGEL was created to ensure no one faces cancer alone, offering education, advocacy, and safe spaces through support groups.</p>
+          <p class="section-sub" style="margin-top:12px;">While her personal faith provides strength, the foundation is built on inclusivity, welcoming individuals from all backgrounds. Her vision is to bridge the gap between awareness and access to care, restoring hope to every life touched by cancer.</p>
         </div>
         <div class="founder-img-container">
-          <div class="founder-img-wrapper">
-            <img src="img/trustee1ceo.jpeg" alt="Retsum George">
-          </div>
-          <div class="founder-tag">
-            <p>Retsum George</p>
-            <span>Founder / CEO</span>
-          </div>
+          <div class="founder-img-wrapper"><img src="img/trustee1ceo.jpeg" alt="Retsum George"></div>
+          <div class="founder-tag"><p>Retsum George</p><span>Founder / CEO</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Board of Trustees Section -->
-    <div class="trustees-section reveal">
+    <!-- Board of Trustees -->
+    <div class="trustees-section reveal" id="trustees">
       <div class="section-tag">Leadership</div>
       <h2 class="section-title">Board of Trustees</h2>
-      <p class="section-sub" style="margin-bottom: 40px;">Our board is comprised of dedicated professionals who provide strategic oversight and medical expertise to the GEORGEL Cancer Foundation.</p>
-
+      <p class="section-sub" style="margin-bottom:40px;">Our board is comprised of dedicated professionals who provide strategic oversight and medical expertise to the GEORGEL Cancer Foundation.</p>
       <div class="trustees-grid">
         <div class="trustee-card">
-          <div class="trustee-img" style="border-color: var(--teal);">
-            <img src="img/trustee2 Dr Samuel Kwis.jpeg" alt="Dr. Samuel Kwis">
-          </div>
-          <h3>Dr. Samuel Kwis</h3>
-          <span class="trustee-role">Trustee</span>
-          <p class="trustee-bio">Dr. Samuel Kwis is a <strong>Consultant Radiologist and Clinical Oncologist</strong>, bringing medical expertise in cancer diagnosis and treatment to GEORGEL.</p>
-          <p class="trustee-bio" style="margin-top: 10px;">He plays a vital role in guiding our health-focused initiatives, ensuring they are medically informed and aligned with best practices.</p>
+          <div class="trustee-img"><img src="img/trustee2 Dr Samuel Kwis.jpeg" alt="Dr. Samuel Kwis"></div>
+          <h3>Dr. Samuel Kwis</h3><span class="trustee-role">Trustee</span>
+          <p class="trustee-bio">Dr. Samuel Kwis is a <strong>Consultant Radiologist and Clinical Oncologist</strong>, bringing medical expertise in cancer diagnosis and treatment to GEORGEL. He plays a vital role in guiding our health-focused initiatives, ensuring they are medically informed and aligned with best practices.</p>
         </div>
-
         <div class="trustee-card">
-          <div class="trustee-img" style="border-color: var(--pink);">
-            <img src="img/trustee3 Dr. Bwatyum.jpeg" alt="Dr. Bwatyum Annah Gyang">
-          </div>
-          <h3>Dr. Bwatyum Annah Gyang</h3>
-          <span class="trustee-role" style="color: var(--pink);">Trustee</span>
-          <p class="trustee-bio">Dr. Bwatyum Annah Gyang is a <strong>Consultant Psychiatrist at JUTH</strong>, with a specialized focus on <strong>psycho-oncology</strong>—the emotional impact of cancer.</p>
-          <p class="trustee-bio" style="margin-top: 10px;">As a trustee, she ensures our patients are supported psychologically throughout their journey, advocating for mental health in recovery.</p>
+          <div class="trustee-img" style="border-color:var(--pink);"><img src="img/trustee3 Dr. Bwatyum.jpeg" alt="Dr. Bwatyum Annah Gyang"></div>
+          <h3>Dr. Bwatyum Annah Gyang</h3><span class="trustee-role" style="color:var(--pink);">Trustee</span>
+          <p class="trustee-bio">Dr. Bwatyum Annah Gyang is a <strong>Consultant Psychiatrist at JUTH</strong>, with a specialized focus on <strong>psycho-oncology</strong>. As a trustee, she ensures our patients are supported psychologically throughout their journey, advocating for mental health in recovery.</p>
         </div>
-
         <div class="trustee-card">
-          <div class="trustee-img" style="border-color: var(--teal);">
-            <img src="img/trustee4 Nurse Christy.jpeg" alt="Nurse Christy Yilwatda Ngwan">
-          </div>
-          <h3>Nurse Christy Yilwatda Ngwan</h3>
-          <span class="trustee-role">Trustee</span>
-          <p class="trustee-bio">Nurse Ngwan is deeply committed to <strong>advancing oncology care</strong> and mentoring healthcare providers across the North Central region.</p>
-          <p class="trustee-bio" style="margin-top: 10px;">She is a passionate advocate for improved support systems, ensuring that no one faces cancer alone through mentorship and community outreach.</p>
+          <div class="trustee-img"><img src="img/trustee4 Nurse Christy.jpeg" alt="Nurse Christy Yilwatda Ngwan"></div>
+          <h3>Nurse Christy Yilwatda Ngwan</h3><span class="trustee-role">Trustee</span>
+          <p class="trustee-bio">Nurse Ngwan is deeply committed to <strong>advancing oncology care</strong> and mentoring healthcare providers across the North Central region. She is a passionate advocate for improved support systems, ensuring no one faces cancer alone.</p>
         </div>
-
         <div class="trustee-card">
-          <div class="trustee-img" style="border-color: var(--teal);">
-            <img src="img/trustee6 Danjuma.jpeg" alt="Danjuma Nabara Atuski">
-          </div>
-          <h3>Danjuma Nabara Atuski</h3>
-          <span class="trustee-role">Programs Manager</span>
-          <p class="trustee-bio">Danjuma Nabara Atuski is a <strong>Human Resources Management expert</strong> with a passion for workplace wellness and public health advocacy.</p>
-          <p class="trustee-bio" style="margin-top: 10px;">As Programs Manager, he drives strategic partnerships and builds sustainable models that engage workplaces as platforms for cancer education.</p>
+          <div class="trustee-img"><img src="img/trustee6 Danjuma.jpeg" alt="Danjuma Nabara Atuski"></div>
+          <h3>Danjuma Nabara Atuski</h3><span class="trustee-role">Programs Manager</span>
+          <p class="trustee-bio">Danjuma Nabara Atuski is a <strong>Human Resources Management expert</strong> with a passion for workplace wellness and public health advocacy. As Programs Manager, he drives strategic partnerships and builds sustainable models for cancer education.</p>
         </div>
-
         <div class="trustee-card">
-          <div class="trustee-img" style="border-color: var(--navy);">
-            <img src="img/trustee7 Gonler Dakom.jpeg" alt="Gonler Dakom Simon">
-          </div>
-          <h3>Gonler Dakom Simon</h3>
-          <span class="trustee-role" style="color: var(--navy);">Board Member &amp; Secretary</span>
-          <p class="trustee-bio">Gonler Dakom Simon is an <strong>Information Technology Specialist</strong> who ensures the foundation’s operational and digital effectiveness.</p>
-          <p class="trustee-bio" style="margin-top: 10px;">In his role as Secretary, he supports effective coordination, documentation, and organizational governance, ensuring accountability and professionalism.</p>
+          <div class="trustee-img" style="border-color:var(--navy);"><img src="img/trustee7 Gonler Dakom.jpeg" alt="Gonler Dakom Simon"></div>
+          <h3>Gonler Dakom Simon</h3><span class="trustee-role" style="color:var(--navy);">Board Member &amp; Secretary</span>
+          <p class="trustee-bio">Gonler Dakom Simon is an <strong>Information Technology Specialist</strong> who ensures the foundation's operational and digital effectiveness. In his role as Secretary, he supports coordination, documentation, and organizational governance.</p>
         </div>
       </div>
     </div>
 
     <div class="about-extended reveal">
-      <p class="section-sub" style="max-width: 100%;">Since our inception, we have carried out impactful initiatives. We partner with government parastatals, media houses, and hospitals to facilitate essential screening and advocacy. During <strong>Pink October</strong>, we lead extensive breast and cervical cancer awareness campaigns. We are proud to be officially registered with the <strong>Nigerian Cancer Society</strong>, aligning our work with national standards.</p>
-      <p class="section-sub" style="max-width: 100%; margin-top: 12px;">On February 17th, we presented research on the psychosocial impact of cancer on caregivers and participated in the North Central Mega Rally. We also donated premedication supplies to the Jos University Teaching Hospital Radio Oncology Unit.</p>
-      
-      <h3 style="margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--navy);">Looking Ahead</h3>
-      <p class="section-sub" style="max-width: 100%;">As the year progresses, we continue to extend our outreach to local government areas, churches, mosques, schools, and rural communities. Our vision is to strengthen cancer care and health education across Plateau State and the North Central region of Nigeria.</p>
-      
+      <p class="section-sub" style="max-width:100%;">Since our inception, we have carried out impactful initiatives. We partner with government parastatals, media houses, and hospitals to facilitate essential screening and advocacy. During <strong>Pink October</strong>, we lead extensive breast and cervical cancer awareness campaigns. We are proud to be officially registered with the <strong>Nigerian Cancer Society</strong>, aligning our work with national standards.</p>
+      <p class="section-sub" style="max-width:100%;margin-top:12px;">On February 17th, we presented research on the psychosocial impact of cancer on caregivers and participated in the North Central Mega Rally. We also donated premedication supplies to the Jos University Teaching Hospital Radio Oncology Unit.</p>
+      <h3 style="margin-top:28px;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--navy);">Looking Ahead</h3>
+      <p class="section-sub" style="max-width:100%;margin-top:8px;">As the year progresses, we continue to extend our outreach to local government areas, churches, mosques, schools, and rural communities. Our vision is to strengthen cancer care and health education across Plateau State and the North Central region of Nigeria.</p>
       <div class="info-alert">
         <p><strong>Learn more:</strong> <a href="http://www.GEORGELcancerfoundation.org" target="_blank">www.GEORGELcancerfoundation.org</a></p>
-        <p><strong>Inquiries:</strong> <a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></p>
+        <p style="margin-top:6px;"><strong>Inquiries:</strong> <a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ── ACTIVITIES & GALLERY ── -->
 <section id="activities">
   <div class="section-inner">
     <div class="activities-header">
@@ -656,198 +554,315 @@
     </div>
     <div class="gallery-grid">
 
-      <div class="gallery-card featured reveal" data-cat="screening" onclick="openLightbox('img/outreach1.jpeg','Community Screening Outreach','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
-        <div class="card-img"><img src="img/outreach1.jpeg" alt="Outreach Screening" loading="lazy"/><span class="card-tag-overlay">Screening</span></div>
+      <!-- SCREENINGS -->
+      <div class="gallery-card featured reveal" data-cat="screening" onclick="openLightbox('img/outreach1.jpeg','Free Community Cancer Screening','Comprehensive breast and cervical cancer screening outreach organized by GEORGEL in collaboration with MWAN and JUTH Oncology Unit.')">
+        <div class="card-img"><img src="img/outreach1.jpeg" alt="Community Screening" loading="lazy"/><span class="card-tag-overlay">Screening</span></div>
         <div class="card-body"><h3>Free Community Cancer Screening</h3><p>Comprehensive breast and cervical cancer screening outreach organized by GEORGEL in collaboration with MWAN and JUTH Oncology Unit.</p><div class="card-meta">🔬 Community Outreach · Jos</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach2.jpeg','Cancer Screening Initiative','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach2.jpeg','Early Detection Outreach','Free screening services provided to community members by GEORGEL and partners.')">
         <div class="card-img"><img src="img/outreach2.jpeg" alt="Screening Activity" loading="lazy"/><span class="card-tag-overlay pink">Screening</span></div>
         <div class="card-body"><h3>Early Detection Outreach</h3><p>Free screening services provided to community members by GEORGEL and partners.</p><div class="card-meta">🩺 Screening Services</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach3.jpeg','Women\'s Health Screening','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach3.jpeg','Cervical & Breast Cancer Screening','Providing vital early detection services to women in collaboration with MWAN.')">
         <div class="card-img"><img src="img/outreach3.jpeg" alt="Screening Event" loading="lazy"/><span class="card-tag-overlay pink">Screening</span></div>
-        <div class="card-body"><h3>Cervical & Breast Cancer Screening</h3><p>Providing vital early detection services to women in collaboration with MWAN.</p><div class="card-meta">🏥 Healthcare Access</div></div>
+        <div class="card-body"><h3>Cervical &amp; Breast Cancer Screening</h3><p>Providing vital early detection services to women in collaboration with MWAN.</p><div class="card-meta">🏥 Healthcare Access</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach4.jpeg','Community Health Drive','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach4.jpeg','Community Health Outreach','Engaging communities with free cancer screening and professional consultations.')">
         <div class="card-img"><img src="img/outreach4.jpeg" alt="Outreach Activity" loading="lazy"/><span class="card-tag-overlay">Screening</span></div>
         <div class="card-body"><h3>Community Health Outreach</h3><p>Engaging communities with free cancer screening and professional consultations.</p><div class="card-meta">🔬 GEORGEL Outreach</div></div>
       </div>
-
-      <div class="gallery-card featured reveal" data-cat="screening" onclick="openLightbox('img/outreach5.jpeg','Healthcare Partnership in Action','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card featured reveal" data-cat="screening" onclick="openLightbox('img/outreach5.jpeg','Strategic Screening Partnership','GEORGEL, MWAN, and JUTH Oncology team united to provide free screenings in Plateau State.')">
         <div class="card-img"><img src="img/outreach5.jpeg" alt="Partnership Screening" loading="lazy"/><span class="card-tag-overlay pink">Screening</span></div>
         <div class="card-body"><h3>Strategic Screening Partnership</h3><p>GEORGEL, MWAN, and JUTH Oncology team united to provide free screenings in Plateau State.</p><div class="card-meta">🤝 Collaborative Action</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach6.jpeg','Frontline Cancer Screening','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach6.jpeg','Frontline Awareness & Screening','Direct community engagement and free screening services by the GEORGEL team.')">
         <div class="card-img"><img src="img/outreach6.jpeg" alt="Frontline Screening" loading="lazy"/><span class="card-tag-overlay">Screening</span></div>
-        <div class="card-body"><h3>Frontline Awareness & Screening</h3><p>Direct community engagement and free screening services by the GEORGEL team.</p><div class="card-meta">🩺 Healthcare Outreach</div></div>
+        <div class="card-body"><h3>Frontline Awareness &amp; Screening</h3><p>Direct community engagement and free screening services by the GEORGEL team.</p><div class="card-meta">🩺 Healthcare Outreach</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach7.jpeg','Scaling Early Detection','Free breast and cervical cancer screening outreach organized by GEORGEL Cancer Foundation in collaboration with MWAN and JUTH Oncology Unit.')">
+      <div class="gallery-card reveal" data-cat="screening" onclick="openLightbox('img/outreach7.jpeg','Expanding Screening Reach','Ensuring more community members have access to free, life-saving cancer screenings.')">
         <div class="card-img"><img src="img/outreach7.jpeg" alt="Outreach Event" loading="lazy"/><span class="card-tag-overlay pink">Screening</span></div>
         <div class="card-body"><h3>Expanding Screening Reach</h3><p>Ensuring more community members have access to free, life-saving cancer screenings.</p><div class="card-meta">🔬 Impact through Action</div></div>
       </div>
 
-      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/img15.jpg','Visit to CMD — JUTH','GEORGEL Cancer Foundation at a high-level board meeting with the Chief Medical Director and senior management of Jos University Teaching Hospital (JUTH) — presenting the foundation\'s cancer awareness agenda and securing institutional commitment.')">
-        <div class="card-img"><img src="img/img15.jpg" alt="JUTH Board Meeting" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
-        <div class="card-body"><h3>Visit to CMD — Jos University Teaching Hospital</h3><p>High-level engagement with the JUTH board — GEORGEL presented its cancer awareness agenda to the Chief Medical Director and senior hospital leadership.</p><div class="card-meta">🏥 JUTH Board Meeting, Jos</div></div>
+      <!-- YOUTH OUTREACH -->
+      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/kambelyouth1.jpg','Cancer Awareness Visit — COCIN Kambel Youth','Lectures on cancer prevention and symptoms delivered to COCIN Kambel youth, organized by GEORGEL in collaboration with the youth executive.')">
+        <div class="card-img"><img src="img/kambelyouth1.jpg" alt="COCIN Kambel Youth" loading="lazy"/><span class="card-tag-overlay">Youth Outreach</span></div>
+        <div class="card-body"><h3>Cancer Awareness Visit — COCIN Kambel Youth</h3><p>Lectures on cancer prevention and symptoms delivered to COCIN Kambel youth, organized by GEORGEL in collaboration with the youth executive.</p><div class="card-meta">🎓 Youth Outreach · COCIN Kambel</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/kambelyouth2.jpg','COCIN Kambel Youth Session','Engaging youth with vital cancer awareness education and early detection information.')">
+        <div class="card-img"><img src="img/kambelyouth2.jpg" alt="Kambel Youth" loading="lazy"/><span class="card-tag-overlay">Youth Outreach</span></div>
+        <div class="card-body"><h3>GEORGEL at COCIN Kambel Youth</h3><p>Engaging the youth with vital cancer awareness education and early detection information.</p><div class="card-meta">🎓 Youth Education</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/kambelyouth3.jpg','Youth Cancer Prevention Session','Interactive session on cancer symptoms and prevention with COCIN Kambel youth members.')">
+        <div class="card-img"><img src="img/kambelyouth3.jpg" alt="Kambel Youth Session" loading="lazy"/><span class="card-tag-overlay">Youth Outreach</span></div>
+        <div class="card-body"><h3>Youth Cancer Prevention Session</h3><p>Interactive session on cancer symptoms and prevention with COCIN Kambel youth members.</p><div class="card-meta">🎓 GEORGEL Outreach</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/kambelyouth4.jpg','GEORGEL & COCIN Kambel Youth Group Photo','A memorable moment with the COCIN Kambel youth executive after a successful cancer awareness session.')">
+        <div class="card-img"><img src="img/kambelyouth4.jpg" alt="Kambel Youth Group" loading="lazy"/><span class="card-tag-overlay">Youth Outreach</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; COCIN Kambel — Group Photo</h3><p>A memorable moment with the COCIN Kambel youth executive after a successful cancer awareness session.</p><div class="card-meta">🎓 Community Engagement</div></div>
       </div>
 
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img1.jpg','Courtesy Visit — Nigerian Medical Association','GEORGEL presenting to the Chairman of the Nigerian Medical Association (NMA), Plateau State Chapter — forging a professional coalition for cancer prevention.')">
-        <div class="card-img"><img src="img/img1.jpg" alt="NMA Visit" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
-        <div class="card-body"><h3>Courtesy Visit — Nigerian Medical Association</h3><p>GEORGEL with the NMA Plateau State Chairman — building a medical coalition to advance cancer prevention and patient advocacy.</p><div class="card-meta">🤝 NMA Plateau State Chapter</div></div>
+      <!-- PRESS / WORLD CANCER DAY -->
+      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/press1.jpg','Press & Stakeholders Briefing — World Cancer Day 2026','GEORGEL hosts the Plateau State Commissioner for Health and key partners for a stakeholders briefing ahead of World Cancer Day 2026.')">
+        <div class="card-img"><img src="img/press1.jpg" alt="Press Briefing" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>Press &amp; Stakeholders Briefing — World Cancer Day 2026</h3><p>GEORGEL hosts the Plateau State Commissioner for Health and key partners for a World Cancer Day 2026 stakeholders briefing.</p><div class="card-meta">📢 Advocacy · Plateau State</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/press2.jpg','Commissioner for Health — World Cancer Day','High-level dialogue with the Plateau State Commissioner for Health on cancer awareness and institutional support.')">
+        <div class="card-img"><img src="img/press2.jpg" alt="Commissioner for Health" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>Engagement with Commissioner for Health</h3><p>High-level dialogue with the Plateau State Commissioner for Health on cancer awareness and institutional support.</p><div class="card-meta">📢 Policy Engagement</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/press3.jpg','Partners & Stakeholders — World Cancer Day Forum','Building a coalition of partners around World Cancer Day 2026 for coordinated cancer advocacy in Plateau State.')">
+        <div class="card-img"><img src="img/press3.jpg" alt="Stakeholders Forum" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>Partners &amp; Stakeholders — World Cancer Day Forum</h3><p>Building a coalition of partners around World Cancer Day 2026 for coordinated cancer advocacy in Plateau State.</p><div class="card-meta">📢 World Cancer Day 2026</div></div>
       </div>
 
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img2.jpg','GEORGEL Team at NMA','The full GEORGEL delegation with the NMA Plateau State Chapter Chairman after a productive courtesy visit.')">
-        <div class="card-img"><img src="img/img2.jpg" alt="GEORGEL at NMA" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
-        <div class="card-body"><h3>GEORGEL Team with NMA Leadership</h3><p>The full GEORGEL delegation with the NMA Plateau State Chapter — aligning on cancer advocacy and professional partnerships.</p><div class="card-meta">🤝 NMA Plateau State</div></div>
+      <!-- WORLD CANCER DAY WALK -->
+      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/collab1.jpg','2026 World Cancer Day Walk — Plateau State','GEORGEL joins the Plateau State Government, Nigerian Cancer Society, and Ministry of Health for the 2026 World Cancer Day walk.')">
+        <div class="card-img"><img src="img/collab1.jpg" alt="World Cancer Day Walk" loading="lazy"/><span class="card-tag-overlay">Advocacy</span></div>
+        <div class="card-body"><h3>2026 World Cancer Day Walk — Plateau State</h3><p>GEORGEL joins the Plateau State Government, Nigerian Cancer Society, and Ministry of Health for the 2026 World Cancer Day walk.</p><div class="card-meta">🚶 World Cancer Day Walk · Jos</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/collab2.jpg','Cancer Day Walk — Plateau State Government','A powerful show of solidarity — walking together to raise cancer awareness across Plateau State.')">
+        <div class="card-img"><img src="img/collab2.jpg" alt="Cancer Day Walk" loading="lazy"/><span class="card-tag-overlay">Advocacy</span></div>
+        <div class="card-body"><h3>Cancer Day Walk — Plateau State Government</h3><p>A powerful show of solidarity — walking together to raise cancer awareness across Plateau State.</p><div class="card-meta">🚶 Collaborative Action</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/collab3.jpg','Walk with Nigerian Cancer Society','GEORGEL marches alongside the Nigerian Cancer Society in the 2026 World Cancer Day commemoration.')">
+        <div class="card-img"><img src="img/collab3.jpg" alt="NCS Walk" loading="lazy"/><span class="card-tag-overlay">Advocacy</span></div>
+        <div class="card-body"><h3>Walk with Nigerian Cancer Society</h3><p>GEORGEL marches alongside the Nigerian Cancer Society in the 2026 World Cancer Day commemoration.</p><div class="card-meta">🚶 NCS Collaboration</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/collab4.jpg','Ministry of Health — Cancer Day Walk','United with the Ministry of Health to champion cancer prevention on World Cancer Day 2026.')">
+        <div class="card-img"><img src="img/collab4.jpg" alt="Ministry Walk" loading="lazy"/><span class="card-tag-overlay">Advocacy</span></div>
+        <div class="card-body"><h3>Ministry of Health — Cancer Day Walk</h3><p>United with the Ministry of Health to champion cancer prevention on World Cancer Day 2026.</p><div class="card-meta">🚶 Ministry of Health</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/collab5.jpg','GEORGEL Team — Cancer Day Walk','The GEORGEL delegation proudly representing the foundation at the 2026 World Cancer Day walk.')">
+        <div class="card-img"><img src="img/collab5.jpg" alt="GEORGEL Walk" loading="lazy"/><span class="card-tag-overlay">Advocacy</span></div>
+        <div class="card-body"><h3>GEORGEL Team — Cancer Day Walk</h3><p>The GEORGEL delegation proudly representing the foundation at the 2026 World Cancer Day walk.</p><div class="card-meta">🚶 GEORGEL Presence</div></div>
       </div>
 
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img3.jpg','Courtesy Visit — CAN','GEORGEL with CAN leadership — integrating cancer awareness into faith community channels for wider reach.')">
-        <div class="card-img"><img src="img/img3.jpg" alt="CAN Visit" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
-        <div class="card-body"><h3>Courtesy Visit — Christian Association of Nigeria</h3><p>GEORGEL with CAN leadership — broadening the cancer awareness coalition to include faith-based organizations.</p><div class="card-meta">🤝 CAN Leadership</div></div>
+      <!-- WORLD CANCER DAY SYMPOSIUM -->
+      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/world1.jpg','2026 World Cancer Day Symposium','GEORGEL participates in the 2026 World Cancer Day symposium — sharing insights on cancer prevention, advocacy, and community support.')">
+        <div class="card-img"><img src="img/world1.jpg" alt="WCD Symposium" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>2026 World Cancer Day Symposium</h3><p>GEORGEL participates in the 2026 World Cancer Day symposium — sharing insights on cancer prevention, advocacy, and community support.</p><div class="card-meta">📅 Symposium · February 4, 2026</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/world2.jpg','World Cancer Day — Event Highlights','Key moments from the 2026 World Cancer Day event organized by GEORGEL and partners.')">
+        <div class="card-img"><img src="img/world2.jpg" alt="WCD Event" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>World Cancer Day — Event Highlights</h3><p>Key moments from the 2026 World Cancer Day event organized by GEORGEL and partners.</p><div class="card-meta">📅 World Cancer Day 2026</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/world3.jpg','Symposium — Expert Speakers','Healthcare professionals and advocates gather to address cancer challenges and solutions at the 2026 symposium.')">
+        <div class="card-img"><img src="img/world3.jpg" alt="Symposium Speakers" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>Symposium — Expert Speakers</h3><p>Healthcare professionals and advocates gather to address cancer challenges and solutions at the 2026 symposium.</p><div class="card-meta">📅 Expert Panel · Jos</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/world4.jpg','World Cancer Day — Community Turnout','Hundreds gather to mark World Cancer Day 2026, a testament to growing public awareness and GEORGEL\'s advocacy impact.')">
+        <div class="card-img"><img src="img/world4.jpg" alt="WCD Crowd" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>World Cancer Day — Community Turnout</h3><p>Hundreds gather to mark World Cancer Day 2026, testament to GEORGEL's growing advocacy impact.</p><div class="card-meta">📅 Community Turnout</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/world5.jpg','GEORGEL at World Cancer Day 2026','GEORGEL team members at the 2026 World Cancer Day — united in the mission to save lives through awareness.')">
+        <div class="card-img"><img src="img/world5.jpg" alt="GEORGEL WCD" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>GEORGEL at World Cancer Day 2026</h3><p>GEORGEL team members at the 2026 World Cancer Day — united in the mission to save lives through awareness.</p><div class="card-meta">📅 GEORGEL Presence</div></div>
       </div>
 
-      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/img4.jpg','Community Outreach — Cancer Awareness','A large-scale community outreach event by GEORGEL — bringing cancer awareness, education, and prevention messaging directly to communities across Jos.')">
-        <div class="card-img"><img src="img/img4.jpg" alt="Community Outreach" loading="lazy"/><span class="card-tag-overlay">Outreach</span></div>
-        <div class="card-body"><h3>Community Outreach — Cancer Awareness Drive</h3><p>A large GEORGEL-led outreach — volunteers, community leaders, and health professionals united to educate and empower communities on cancer prevention.</p><div class="card-meta">🏘️ Community Engagement · Jos</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img5.jpg','GEORGEL Outreach Team','The GEORGEL field team assembled for a community awareness activity — dedicated volunteers and partners carrying cancer prevention to the people.')">
-        <div class="card-img"><img src="img/img5.jpg" alt="Outreach Team" loading="lazy"/><span class="card-tag-overlay">Outreach</span></div>
-        <div class="card-body"><h3>GEORGEL Outreach Team — Field Assembly</h3><p>The dedicated GEORGEL team before a community activity — united under the mission to fight cancer at the grassroots level.</p><div class="card-meta">👥 GEORGEL Field Team</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img6.jpg','Courtesy Visit — MWAN','GEORGEL with MWAN leadership — a vital partnership driving women-focused cancer awareness and free screening initiatives.')">
-        <div class="card-img"><img src="img/img6.jpg" alt="MWAN Visit" loading="lazy"/><span class="card-tag-overlay pink">Partnership</span></div>
-        <div class="card-body"><h3>Courtesy Visit — Medical Women Association (MWAN)</h3><p>GEORGEL with MWAN — powering women-focused cancer awareness, free breast examination, and screening initiatives.</p><div class="card-meta">🤝 MWAN Collaboration</div></div>
-      </div>
-
-      <div class="gallery-card featured reveal" data-cat="media" onclick="openLightbox('img/img7.jpg','Media Engagement — PRTVC','A large GEORGEL delegation at PRTVC — amplifying cancer prevention to millions of viewers and listeners across Plateau State.')">
+      <!-- MEDIA -->
+      <div class="gallery-card featured reveal" data-cat="media" onclick="openLightbox('img/img7.jpg','Media Engagement — PRTVC','GEORGEL at the Plateau Radio Television Corporation — amplifying cancer prevention to millions through Plateau State\'s leading broadcast media platform.')">
         <div class="card-img"><img src="img/img7.jpg" alt="PRTVC" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>Media Engagement — PRTVC</h3><p>GEORGEL at the Plateau Radio Television Corporation — amplifying cancer prevention to millions through Plateau State's leading broadcast media platform.</p><div class="card-meta">📺 PRTVC, Jos</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img8.jpg','GEORGEL at PRTVC','GEORGEL leadership with PRTVC management — building a sustained broadcast partnership for cancer awareness programming.')">
+      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img8.jpg','GEORGEL Leadership at PRTVC','GEORGEL with PRTVC management — forging a media partnership to keep cancer awareness on the airwaves.')">
         <div class="card-img"><img src="img/img8.jpg" alt="PRTVC Group" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>GEORGEL Leadership at PRTVC</h3><p>GEORGEL with PRTVC management — forging a media partnership to keep cancer awareness consistently on the airwaves.</p><div class="card-meta">📺 PRTVC Station Visit</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img9.jpg','PRTVC Full Delegation','The complete GEORGEL delegation at PRTVC — ensuring cancer prevention messages reach every household in Plateau State.')">
+      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img9.jpg','PRTVC — Full Delegation Visit','GEORGEL\'s full delegation at PRTVC — comprehensive media coverage reaching every household across Plateau State.')">
         <div class="card-img"><img src="img/img9.jpg" alt="PRTVC Full" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>PRTVC — Full Delegation Visit</h3><p>GEORGEL's full delegation at PRTVC — comprehensive media coverage reaching every household across Plateau State.</p><div class="card-meta">📺 PRTVC Full Engagement</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img10.jpg','Media Engagement — NTA Jos','GEORGEL with NTA Jos management — securing national television broadcast for cancer awareness campaigns.')">
+      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img10.jpg','Media Engagement — NTA Jos','GEORGEL with NTA Jos — securing national television reach for cancer awareness campaigns.')">
         <div class="card-img"><img src="img/img10.jpg" alt="NTA Media" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>Media Engagement — NTA Jos Network Centre</h3><p>GEORGEL with NTA Jos — securing national television reach for cancer awareness campaigns through Nigeria's premier broadcaster.</p><div class="card-meta">📺 NTA Jos Network Centre</div></div>
       </div>
-
-      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/img11.jpg','Stakeholders Briefing — World Cancer Day 2026','GEORGEL presenting at a formal stakeholders briefing at JUTH marking World Cancer Day, February 4th 2026.')">
-        <div class="card-img"><img src="img/img11.jpg" alt="World Cancer Day" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
-        <div class="card-body"><h3>Stakeholders Briefing — World Cancer Day, February 4th 2026</h3><p>GEORGEL addresses JUTH management and government partners — calling for coordinated institutional action against cancer in Nigeria.</p><div class="card-meta">📅 February 4, 2026 · JUTH</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img12.jpg','Visit to Oncology Department — JUTH','GEORGEL with JUTH\'s Oncology team — linking frontline cancer professionals with community advocacy.')">
-        <div class="card-img"><img src="img/img12.jpg" alt="JUTH Oncology" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
-        <div class="card-body"><h3>Visit to Oncology Department — JUTH</h3><p>GEORGEL with JUTH's Oncology team — connecting frontline cancer professionals with our community advocacy.</p><div class="card-meta">🏥 JUTH Oncology Department</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img13.jpg','GEORGEL & JUTH Oncology','Group photograph solidifying the GEORGEL–JUTH Oncology partnership in the mission to improve cancer outcomes.')">
-        <div class="card-img"><img src="img/img13.jpg" alt="JUTH Oncology Group" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
-        <div class="card-body"><h3>GEORGEL &amp; JUTH Oncology — Partnership Photo</h3><p>Solidifying the GEORGEL–JUTH Oncology partnership — united to improve cancer outcomes for Nigerians.</p><div class="card-meta">🏥 JUTH Oncology</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img14.jpg','Engagement at CMD\'s Office — JUTH','GEORGEL\'s formal presentation in the CMD\'s boardroom — discussing cancer prevention strategies and collaborative patient support.')">
-        <div class="card-img"><img src="img/img14.jpg" alt="CMD Boardroom" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
-        <div class="card-body"><h3>Engagement at CMD's Office — JUTH</h3><p>GEORGEL's formal presentation in the CMD's boardroom — discussing cancer prevention strategies and commitments for patient support.</p><div class="card-meta">🏥 CMD's Office, JUTH</div></div>
-      </div>
-
-      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/img16.jpg','Medical Supplies Donation — JUTH','A landmark handover — GEORGEL presents medical supplies to the JUTH CMD, demonstrating tangible commitment to cancer care.')">
-        <div class="card-img"><img src="img/img16.jpg" alt="Medical Donation" loading="lazy"/><span class="card-tag-overlay pink">Medical Support</span></div>
-        <div class="card-body"><h3>Medical Supplies Donation to JUTH</h3><p>A landmark moment — GEORGEL presents medical supplies to the JUTH CMD, demonstrating tangible commitment to frontline cancer care in Nigeria.</p><div class="card-meta">💊 Donation · JUTH CMD</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img17.jpg','Visit to a Breast Cancer Warrior','GEORGEL at the bedside of one of our cancer warriors — offering solidarity and support. This is the human heart of everything we do.')">
-        <div class="card-img"><img src="img/img17.jpg" alt="Cancer Warrior Visit" loading="lazy"/><span class="card-tag-overlay pink">Patient Support</span></div>
-        <div class="card-body"><h3>Visit to a Breast Cancer Warrior</h3><p>GEORGEL at the bedside of one of our cancer warriors — offering solidarity and support. This is who we fight for.</p><div class="card-meta">💗 Patient Solidarity Visit</div></div>
-      </div>
-
-      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img18.jpg','Media Engagement — NTA Jos DG','GEORGEL presenting to the NTA Jos Director General — securing media partnership for cancer awareness on national television.')">
+      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img18.jpg','Media Engagement — NTA Jos (Director General)','GEORGEL with the NTA Jos DG — securing commitment for cancer awareness programming on national television.')">
         <div class="card-img"><img src="img/img18.jpg" alt="NTA DG" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>Media Engagement — NTA Jos (Director General)</h3><p>GEORGEL with the NTA Jos DG — securing commitment for cancer awareness programming on the national television network.</p><div class="card-meta">📺 NTA Jos — DG's Office</div></div>
       </div>
-
-      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img19.jpg','Media Engagement — JayFM Jos','GEORGEL with the JayFM Jos team — securing consistent radio broadcast for cancer prevention messaging across Plateau State.')">
+      <div class="gallery-card reveal" data-cat="media" onclick="openLightbox('img/img19.jpg','Media Engagement — JayFM Jos','GEORGEL with JayFM Jos — securing consistent radio broadcast coverage for cancer prevention.')">
         <div class="card-img"><img src="img/img19.jpg" alt="JayFM" loading="lazy"/><span class="card-tag-overlay">Media</span></div>
         <div class="card-body"><h3>Media Engagement — JayFM Jos</h3><p>GEORGEL with JayFM Jos — securing consistent radio broadcast coverage to keep cancer prevention on the airwaves.</p><div class="card-meta">📻 JayFM Jos</div></div>
       </div>
 
-      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img20.jpg','Visit to Plateau State DMC & Bureau of Statistics','GEORGEL engages Plateau State government — ensuring cancer data drives policy and GEORGEL\'s work is institutionally recognized.')">
+      <!-- INSTITUTIONAL -->
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/img11.jpg','Stakeholders Briefing — World Cancer Day, February 4th 2026','GEORGEL addresses JUTH management and government partners — calling for coordinated institutional action against cancer in Nigeria.')">
+        <div class="card-img"><img src="img/img11.jpg" alt="World Cancer Day" loading="lazy"/><span class="card-tag-overlay pink">Advocacy</span></div>
+        <div class="card-body"><h3>Stakeholders Briefing — World Cancer Day 2026</h3><p>GEORGEL addresses JUTH management and government partners — calling for coordinated institutional action against cancer in Nigeria.</p><div class="card-meta">📅 February 4, 2026 · JUTH</div></div>
+      </div>
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/img15.jpg','Visit to CMD — Jos University Teaching Hospital','GEORGEL presented its cancer awareness agenda to the Chief Medical Director and senior hospital leadership.')">
+        <div class="card-img"><img src="img/img15.jpg" alt="JUTH Board Meeting" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Visit to CMD — Jos University Teaching Hospital</h3><p>High-level engagement with the JUTH board — GEORGEL presented its cancer awareness agenda to the Chief Medical Director and senior hospital leadership.</p><div class="card-meta">🏥 JUTH Board Meeting, Jos</div></div>
+      </div>
+
+      <!-- ONCOLOGY UNIT -->
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/oncology1.jpg','Visit to JUTH Oncology Unit','GEORGEL visits the Oncology Unit of Jos University Teaching Hospital to strengthen collaboration on cancer patient care and support.')">
+        <div class="card-img"><img src="img/oncology1.jpg" alt="JUTH Oncology" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Visit to JUTH Oncology Unit</h3><p>GEORGEL visits the Oncology Unit of Jos University Teaching Hospital to strengthen collaboration on cancer patient care and support.</p><div class="card-meta">🏥 JUTH Oncology · Jos</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/oncology2.jpg','JUTH Oncology — Partnership Engagement','Building a strong bridge between GEORGEL\'s community advocacy and JUTH\'s frontline oncology services.')">
+        <div class="card-img"><img src="img/oncology2.jpg" alt="Oncology Engagement" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>JUTH Oncology — Partnership Engagement</h3><p>Building a strong bridge between GEORGEL's community advocacy and JUTH's frontline oncology services.</p><div class="card-meta">🏥 Oncology Partnership</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/oncology3.jpg','GEORGEL & JUTH Oncology Team','GEORGEL team with JUTH Oncology professionals — aligning on patient referral pathways and support systems.')">
+        <div class="card-img"><img src="img/oncology3.jpg" alt="Oncology Team" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; JUTH Oncology Team</h3><p>GEORGEL team with JUTH Oncology professionals — aligning on patient referral pathways and support systems.</p><div class="card-meta">🏥 Medical Collaboration</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/oncology4.jpg','Oncology Unit — Strategic Discussion','In-depth discussions with JUTH Oncology staff on how GEORGEL can better support cancer patients through the treatment journey.')">
+        <div class="card-img"><img src="img/oncology4.jpg" alt="Oncology Discussion" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Oncology Unit — Strategic Discussion</h3><p>In-depth discussions with JUTH Oncology staff on how GEORGEL can better support cancer patients through the treatment journey.</p><div class="card-meta">🏥 Patient Support Planning</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/oncology5.jpg','GEORGEL & JUTH Oncology — Group Photo','A united front — GEORGEL and JUTH Oncology committed to improving cancer outcomes for Nigerians.')">
+        <div class="card-img"><img src="img/oncology5.jpg" alt="Oncology Group" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; JUTH Oncology — Group Photo</h3><p>A united front — GEORGEL and JUTH Oncology committed to improving cancer outcomes for Nigerians.</p><div class="card-meta">🏥 JUTH · GEORGEL United</div></div>
+      </div>
+
+      <!-- MEDICAL COMMODITIES -->
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/MEDICAL1.jpg','Visit to Plateau State Drug & Medical Commodities','GEORGEL visits the Plateau State Drug and Medical Commodities agency to strengthen supply chain partnerships for cancer care.')">
+        <div class="card-img"><img src="img/MEDICAL1.jpg" alt="Medical Commodities" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Visit to Plateau State Drug &amp; Medical Commodities</h3><p>GEORGEL visits the Plateau State Drug and Medical Commodities agency to strengthen supply chain partnerships for cancer care.</p><div class="card-meta">💊 Medical Partnership · Plateau State</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/MEDICAL2.jpg','Medical Commodities — Partnership Engagement','Building relationships with Plateau State\'s medical commodities agency to ensure access to essential cancer care supplies.')">
+        <div class="card-img"><img src="img/MEDICAL2.jpg" alt="Medical Partnership" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Medical Commodities — Partnership Engagement</h3><p>Building relationships with Plateau State's medical commodities agency to ensure access to essential cancer care supplies.</p><div class="card-meta">💊 Supply Chain Access</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/MEDICAL3.jpg','GEORGEL & Plateau State Medical Agency','Formal engagement to align GEORGEL\'s medical support mission with state drug and commodity distribution channels.')">
+        <div class="card-img"><img src="img/MEDICAL3.jpg" alt="Medical Agency" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; Plateau State Medical Agency</h3><p>Formal engagement to align GEORGEL's medical support mission with state drug and commodity distribution channels.</p><div class="card-meta">💊 Institutional Engagement</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/MEDICAL4.jpg','Medical Commodities — Group Photo','GEORGEL team with Plateau State Drug and Medical Commodities officials after a productive partnership meeting.')">
+        <div class="card-img"><img src="img/MEDICAL4.jpg" alt="Medical Group Photo" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Medical Commodities — Group Photo</h3><p>GEORGEL team with Plateau State Drug and Medical Commodities officials after a productive partnership meeting.</p><div class="card-meta">💊 GEORGEL Partnership</div></div>
+      </div>
+
+      <!-- POWA -->
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/POWA1.jpg','Visit to POWA — In Collaboration with MWAN','GEORGEL visits the Plateau State Office for Women Affairs (POWA) in collaboration with MWAN to advance women-focused cancer awareness.')">
+        <div class="card-img"><img src="img/POWA1.jpg" alt="POWA Visit" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>Visit to POWA — In Collaboration with MWAN</h3><p>GEORGEL visits the Plateau State Office for Women Affairs (POWA) in collaboration with MWAN to advance women-focused cancer awareness.</p><div class="card-meta">🤝 POWA · MWAN Collaboration</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA2.jpg','GEORGEL & POWA — Women\'s Cancer Advocacy','Engaging POWA leadership on integrating cancer awareness into women\'s affairs programs across Plateau State.')">
+        <div class="card-img"><img src="img/POWA2.jpg" alt="POWA Engagement" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; POWA — Women's Cancer Advocacy</h3><p>Engaging POWA leadership on integrating cancer awareness into women's affairs programs across Plateau State.</p><div class="card-meta">🤝 Women's Advocacy</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA3.jpg','POWA Partnership Meeting','Strategic discussions at POWA to align cancer screening and awareness initiatives with government women\'s programs.')">
+        <div class="card-img"><img src="img/POWA3.jpg" alt="POWA Meeting" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>POWA Partnership Meeting</h3><p>Strategic discussions at POWA to align cancer screening and awareness initiatives with government women's programs.</p><div class="card-meta">🤝 Strategic Partnership</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA4.jpg','GEORGEL, MWAN & POWA — United for Women\'s Health','A powerful coalition of GEORGEL, MWAN, and POWA united to protect women from cancer through awareness and access.')">
+        <div class="card-img"><img src="img/POWA4.jpg" alt="POWA MWAN GEORGEL" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL, MWAN &amp; POWA — United for Women's Health</h3><p>A powerful coalition of GEORGEL, MWAN, and POWA united to protect women from cancer through awareness and access.</p><div class="card-meta">🤝 Women's Health Coalition</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA5.jpg','POWA Collaboration — Cancer Awareness','GEORGEL and MWAN present cancer awareness materials and programs to POWA leadership.')">
+        <div class="card-img"><img src="img/POWA5.jpg" alt="POWA Collaboration" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>POWA Collaboration — Cancer Awareness</h3><p>GEORGEL and MWAN present cancer awareness materials and programs to POWA leadership.</p><div class="card-meta">🤝 Awareness Drive</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA6.jpg','POWA Visit — Group Photo','Group photo with POWA officials after a successful partnership engagement on women\'s cancer health.')">
+        <div class="card-img"><img src="img/POWA6.jpg" alt="POWA Group Photo" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>POWA Visit — Group Photo</h3><p>Group photo with POWA officials after a successful partnership engagement on women's cancer health.</p><div class="card-meta">🤝 POWA · Plateau State</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA7.jpg','GEORGEL Team at POWA','The GEORGEL delegation at POWA — committed to ensuring every woman in Plateau State has access to cancer information.')">
+        <div class="card-img"><img src="img/POWA7.jpg" alt="GEORGEL at POWA" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL Team at POWA</h3><p>The GEORGEL delegation at POWA — committed to ensuring every woman in Plateau State has access to cancer information.</p><div class="card-meta">🤝 GEORGEL at POWA</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/POWA8.jpeg','POWA — Closing Engagement','Final moments of GEORGEL\'s visit to POWA, cementing a partnership for ongoing women\'s cancer advocacy in Plateau State.')">
+        <div class="card-img"><img src="img/POWA8.jpeg" alt="POWA Final" loading="lazy"/><span class="card-tag-overlay pink">Institutional</span></div>
+        <div class="card-body"><h3>POWA — Closing Engagement</h3><p>Final moments of GEORGEL's visit to POWA, cementing a partnership for ongoing women's cancer advocacy in Plateau State.</p><div class="card-meta">🤝 Partnership Cemented</div></div>
+      </div>
+
+      <!-- PRIMARY HEALTHCARE BOARD -->
+      <div class="gallery-card featured reveal" data-cat="institutional" onclick="openLightbox('img/plateau1.jpg','Visit to Plateau State Primary Healthcare Board','GEORGEL engages the Plateau State Primary Healthcare Development Board to explore cancer awareness partnerships at the grassroots level.')">
+        <div class="card-img"><img src="img/plateau1.jpg" alt="Primary Healthcare Board" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Visit to Plateau State Primary Healthcare Board</h3><p>GEORGEL engages the Plateau State Primary Healthcare Development Board to explore cancer awareness partnerships at the grassroots level.</p><div class="card-meta">🏛️ Primary Healthcare · Plateau State</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/plateau2.jpg','Primary Healthcare Board — Partnership Discussions','Strategic conversations on integrating GEORGEL\'s cancer education programs into Plateau State\'s primary healthcare system.')">
+        <div class="card-img"><img src="img/plateau2.jpg" alt="Healthcare Board" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Primary Healthcare Board — Partnership Discussions</h3><p>Strategic conversations on integrating GEORGEL's cancer education programs into Plateau State's primary healthcare system.</p><div class="card-meta">🏛️ Healthcare Partnership</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/plateau3.jpg','GEORGEL & Primary Healthcare Board — Group Photo','Cementing a partnership with the Plateau State Primary Healthcare Board to extend cancer awareness to communities across the state.')">
+        <div class="card-img"><img src="img/plateau3.jpg" alt="Healthcare Group Photo" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>GEORGEL &amp; Primary Healthcare Board — Group Photo</h3><p>Cementing a partnership with the Plateau State Primary Healthcare Board to extend cancer awareness to communities across the state.</p><div class="card-meta">🏛️ GEORGEL · Plateau State</div></div>
+      </div>
+
+      <!-- OTHER INSTITUTIONAL -->
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img1.jpg','Courtesy Visit — Nigerian Medical Association','GEORGEL with the NMA Plateau State Chairman — building a medical coalition to advance cancer prevention and patient advocacy.')">
+        <div class="card-img"><img src="img/img1.jpg" alt="NMA Visit" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
+        <div class="card-body"><h3>Courtesy Visit — Nigerian Medical Association</h3><p>GEORGEL with the NMA Plateau State Chairman — building a medical coalition to advance cancer prevention and patient advocacy.</p><div class="card-meta">🤝 NMA Plateau State Chapter</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img2.jpg','GEORGEL Team with NMA Leadership','The full GEORGEL delegation with the NMA Plateau State Chapter — aligning on cancer advocacy and professional partnerships.')">
+        <div class="card-img"><img src="img/img2.jpg" alt="GEORGEL at NMA" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
+        <div class="card-body"><h3>GEORGEL Team with NMA Leadership</h3><p>The full GEORGEL delegation with the NMA Plateau State Chapter — aligning on cancer advocacy and professional partnerships.</p><div class="card-meta">🤝 NMA Plateau State</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img3.jpg','Courtesy Visit — Christian Association of Nigeria','GEORGEL with CAN leadership — broadening the cancer awareness coalition to include faith-based organizations.')">
+        <div class="card-img"><img src="img/img3.jpg" alt="CAN Visit" loading="lazy"/><span class="card-tag-overlay">Partnership</span></div>
+        <div class="card-body"><h3>Courtesy Visit — Christian Association of Nigeria</h3><p>GEORGEL with CAN leadership — broadening the cancer awareness coalition to include faith-based organizations.</p><div class="card-meta">🤝 CAN Leadership</div></div>
+      </div>
+      <div class="gallery-card featured reveal" data-cat="advocacy" onclick="openLightbox('img/img4.jpg','Community Outreach — Cancer Awareness Drive','A large GEORGEL-led outreach — volunteers, community leaders, and health professionals united to educate and empower communities.')">
+        <div class="card-img"><img src="img/img4.jpg" alt="Community Outreach" loading="lazy"/><span class="card-tag-overlay">Outreach</span></div>
+        <div class="card-body"><h3>Community Outreach — Cancer Awareness Drive</h3><p>A large GEORGEL-led outreach — volunteers, community leaders, and health professionals united to educate and empower communities on cancer prevention.</p><div class="card-meta">🏘️ Community Engagement · Jos</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img5.jpg','GEORGEL Outreach Team — Field Assembly','The dedicated GEORGEL team before a community activity — united under the mission to fight cancer at the grassroots level.')">
+        <div class="card-img"><img src="img/img5.jpg" alt="Outreach Team" loading="lazy"/><span class="card-tag-overlay">Outreach</span></div>
+        <div class="card-body"><h3>GEORGEL Outreach Team — Field Assembly</h3><p>The dedicated GEORGEL team before a community activity — united under the mission to fight cancer at the grassroots level.</p><div class="card-meta">👥 GEORGEL Field Team</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img6.jpg','Courtesy Visit — Medical Women Association (MWAN)','GEORGEL with MWAN — powering women-focused cancer awareness, free breast examination, and screening initiatives.')">
+        <div class="card-img"><img src="img/img6.jpg" alt="MWAN Visit" loading="lazy"/><span class="card-tag-overlay pink">Partnership</span></div>
+        <div class="card-body"><h3>Courtesy Visit — Medical Women Association (MWAN)</h3><p>GEORGEL with MWAN — powering women-focused cancer awareness, free breast examination, and screening initiatives.</p><div class="card-meta">🤝 MWAN Collaboration</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img12.jpg','Visit to Oncology Department — JUTH','GEORGEL with JUTH\'s Oncology team — connecting frontline cancer professionals with our community advocacy.')">
+        <div class="card-img"><img src="img/img12.jpg" alt="JUTH Oncology" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
+        <div class="card-body"><h3>Visit to Oncology Department — JUTH</h3><p>GEORGEL with JUTH's Oncology team — connecting frontline cancer professionals with our community advocacy.</p><div class="card-meta">🏥 JUTH Oncology Department</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img16.jpg','Medical Supplies Donation to JUTH','A landmark moment — GEORGEL presents medical supplies to the JUTH CMD, demonstrating tangible commitment to frontline cancer care in Nigeria.')">
+        <div class="card-img"><img src="img/img16.jpg" alt="Medical Donation" loading="lazy"/><span class="card-tag-overlay pink">Medical Support</span></div>
+        <div class="card-body"><h3>Medical Supplies Donation to JUTH</h3><p>A landmark moment — GEORGEL presents medical supplies to the JUTH CMD, demonstrating tangible commitment to frontline cancer care in Nigeria.</p><div class="card-meta">💊 Donation · JUTH CMD</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="advocacy" onclick="openLightbox('img/img17.jpg','Visit to a Breast Cancer Warrior','GEORGEL at the bedside of one of our cancer warriors — offering solidarity and support. This is who we fight for.')">
+        <div class="card-img"><img src="img/img17.jpg" alt="Cancer Warrior Visit" loading="lazy"/><span class="card-tag-overlay pink">Patient Support</span></div>
+        <div class="card-body"><h3>Visit to a Breast Cancer Warrior</h3><p>GEORGEL at the bedside of one of our cancer warriors — offering solidarity and support. This is who we fight for.</p><div class="card-meta">💗 Patient Solidarity Visit</div></div>
+      </div>
+      <div class="gallery-card reveal" data-cat="institutional" onclick="openLightbox('img/img20.jpg','Visit to Plateau State DMC & Bureau of Statistics','GEORGEL engages Plateau State institutions — ensuring cancer data drives policy and the foundation\'s work is formally recognized.')">
         <div class="card-img"><img src="img/img20.jpg" alt="Plateau DMC" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
         <div class="card-body"><h3>Visit to Plateau State DMC &amp; Bureau of Statistics</h3><p>GEORGEL engages Plateau State institutions — ensuring cancer data drives policy and the foundation's work is formally recognized.</p><div class="card-meta">🏛️ Plateau State Government</div></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- PINK OCTOBER 2025 -->
-<section id="pink-october" style="background: linear-gradient(135deg,#fff0fa 0%,#fce4f3 100%); padding:96px 40px;">
+<!-- ── PINK OCTOBER ── -->
+<section id="pink-october">
   <div class="section-inner">
-    <div style="text-align:center; margin-bottom:56px;">
+    <div style="text-align:center;margin-bottom:48px;">
       <div class="section-tag" style="margin:0 auto 16px;">Pink October 2025</div>
-      <h2 class="section-title" style="color:var(--navy);">Breast Cancer Awareness Month</h2>
-      <p style="font-size:1rem;color:var(--gray-mid);line-height:1.75;max-width:640px;margin:0 auto;font-weight:300;">In collaboration with <strong>MWAN</strong> and the <strong>JUTH Oncology Unit</strong> — GEORGEL took to the streets of Jos in October 2025 for a powerful breast cancer awareness march, reaching thousands of Nigerians with the message: <em>Early detection saves lives.</em></p>
+      <h2 class="section-title">Breast Cancer Awareness Month</h2>
+      <p style="font-size:1rem;color:var(--gray-mid);line-height:1.75;max-width:640px;margin:0 auto;">In collaboration with <strong>MWAN</strong> and the <strong>JUTH Oncology Unit</strong> — GEORGEL took to the streets of Jos in October 2025 for a powerful breast cancer awareness march, reaching thousands of Nigerians with the message: <em>Early detection saves lives.</em></p>
     </div>
-    <!-- Hero Rally Photo -->
-    <div style="border-radius:10px;overflow:hidden;margin-bottom:24px;cursor:pointer;box-shadow:0 8px 40px rgba(233,30,140,.15);" onclick="openLightbox('img/rally8.jpg','Pink October 2025 — Breast Cancer Awareness March','GEORGEL Cancer Foundation, in collaboration with MWAN and JUTH Oncology, leads a large-scale breast cancer awareness march through the streets of Jos — October 2025.')">
-      <img src="img/rally8.jpg" alt="Pink October March" style="width:100%;height:480px;object-fit:cover;display:block;transition:transform .35s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"/>
+    <div class="pink-hero-img" onclick="openLightbox('img/rally8.jpg','Pink October 2025 — Breast Cancer Awareness March','GEORGEL Cancer Foundation, in collaboration with MWAN and JUTH Oncology, leads a large-scale breast cancer awareness march through the streets of Jos — October 2025.')">
+      <img src="img/rally8.jpg" alt="Pink October March"/>
     </div>
-    <!-- Grid of rally photos -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);grid-column:span 2;" onclick="openLightbox('img/rally4.jpg','GEORGEL Awareness Rally — Speaking to the Crowd','GEORGEL team member addresses the crowd with the GEORGEL Cancer Foundation breast cancer awareness banner — delivering education on early detection directly to the public.')">
-        <img src="img/rally4.jpg" alt="Rally Speech" style="width:100%;height:280px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally16.jpg','GEORGEL Volunteer — Pink October','A proud GEORGEL volunteer in pink uniform bearing the foundation\'s branding — representing the movement for cancer awareness in Jos.')">
-        <img src="img/rally16.jpg" alt="GEORGEL Volunteer" style="width:100%;height:280px;object-fit:cover;display:block;"/>
-      </div>
+    <div class="pink-grid-2">
+      <div class="pink-thumb tall" onclick="openLightbox('img/rally4.jpg','GEORGEL Awareness Rally — Speaking to the Crowd','GEORGEL team member addresses the crowd with the breast cancer awareness banner.')"><img src="img/rally4.jpg" alt="Rally Speech"/></div>
+      <div class="pink-thumb tall" onclick="openLightbox('img/rally16.jpg','GEORGEL Volunteer — Pink October','A proud GEORGEL volunteer in pink uniform at the foundation\'s awareness event in Jos.')"><img src="img/rally16.jpg" alt="GEORGEL Volunteer"/></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;">
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally14.jpg','GEORGEL Cap — Spreading Hope Saving Lives','Close-up of the iconic GEORGEL Cancer Foundation cap — bearing the tagline Spreading Hope, Saving Lives — worn by a participant at the Pink October march.')">
-        <img src="img/rally14.jpg" alt="GEORGEL Cap" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally15.jpg','GEORGEL Team Member — Pink October','A GEORGEL team member proudly wearing the foundation\'s branded pink uniform and cap at the Pink October 2025 breast cancer awareness event.')">
-        <img src="img/rally15.jpg" alt="GEORGEL Team" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally19.jpg','GEORGEL Volunteers — Sisters in Pink','Two GEORGEL volunteers wearing the foundation\'s pink uniforms — united in the mission to spread hope and save lives through breast cancer awareness.')">
-        <img src="img/rally19.jpg" alt="Volunteers" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally17.jpg','GEORGEL & MWAN — United for Pink October','GEORGEL and MWAN team members together at the Pink October rally — a powerful partnership of women united for breast cancer awareness in Plateau State.')">
-        <img src="img/rally17.jpg" alt="GEORGEL MWAN" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
+    <div class="pink-grid-4">
+      <div class="pink-thumb" onclick="openLightbox('img/rally14.jpg','GEORGEL Cap — Spreading Hope Saving Lives','Close-up of the iconic GEORGEL Cancer Foundation cap.')"><img src="img/rally14.jpg" alt="GEORGEL Cap"/></div>
+      <div class="pink-thumb" onclick="openLightbox('img/rally15.jpg','GEORGEL Team Member — Pink October','A GEORGEL team member wearing the foundation\'s branded pink uniform.')"><img src="img/rally15.jpg" alt="GEORGEL Team"/></div>
+      <div class="pink-thumb" onclick="openLightbox('img/rally19.jpg','GEORGEL Volunteers — Sisters in Pink','Two GEORGEL volunteers wearing the foundation\'s pink uniforms.')"><img src="img/rally19.jpg" alt="Volunteers"/></div>
+      <div class="pink-thumb" onclick="openLightbox('img/rally17.jpg','GEORGEL & MWAN — United for Pink October','GEORGEL and MWAN team members together at the Pink October rally.')"><img src="img/rally17.jpg" alt="GEORGEL MWAN"/></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally7.jpg','Interactive Demonstration — Breast Self-Exam','GEORGEL team demonstrates breast self-examination technique at the Pink October rally — using a model to show the public how to detect early signs of breast cancer.')">
-        <img src="img/rally7.jpg" alt="Self Exam Demo" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally11.jpg','GEORGEL Speaker — Public Address','GEORGEL representative delivers a passionate public address on breast cancer prevention and the importance of early screening during the Pink October march in Jos.')">
-        <img src="img/rally11.jpg" alt="Speaker" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
-      <div style="border-radius:8px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);" onclick="openLightbox('img/rally13.jpg','A Face in the Crowd — Listening, Learning','A community member attentively listens to GEORGEL\'s breast cancer awareness message during the Pink October outreach — the quiet impact of education reaching one person at a time.')">
-        <img src="img/rally13.jpg" alt="Community Member" style="width:100%;height:220px;object-fit:cover;display:block;"/>
-      </div>
+    <div class="pink-grid-3">
+      <div class="pink-thumb" onclick="openLightbox('img/rally7.jpg','Interactive Demonstration — Breast Self-Exam','GEORGEL team demonstrates breast self-examination technique at the Pink October rally.')"><img src="img/rally7.jpg" alt="Self Exam Demo"/></div>
+      <div class="pink-thumb" onclick="openLightbox('img/rally11.jpg','GEORGEL Speaker — Public Address','GEORGEL representative delivers a passionate public address on breast cancer prevention.')"><img src="img/rally11.jpg" alt="Speaker"/></div>
+      <div class="pink-thumb" onclick="openLightbox('img/rally13.jpg','A Face in the Crowd — Listening, Learning','A community member attentively listens to GEORGEL\'s breast cancer awareness message.')"><img src="img/rally13.jpg" alt="Community Member"/></div>
     </div>
-    <div style="text-align:center;margin-top:40px;padding:28px;background:#fff;border-radius:8px;border:1px solid var(--border);">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--navy);font-style:italic;margin-bottom:8px;">"Early detection saves lives. Schedule your screening."</p>
-      <p style="font-size:.82rem;color:var(--gray-mid);letter-spacing:.06em;text-transform:uppercase;">GEORGEL Cancer Foundation · Pink October 2025 · In collaboration with MWAN & JUTH Oncology</p>
+    <div class="pink-quote">
+      <p>"Early detection saves lives. Schedule your screening."</p>
+      <p>GEORGEL Cancer Foundation · Pink October 2025 · In collaboration with MWAN &amp; JUTH Oncology</p>
     </div>
   </div>
 </section>
 
+<!-- ── PARTNERS ── -->
 <div class="partners-strip reveal">
   <h2>Our Partners &amp; Collaborators</h2>
   <div class="partners-row">
@@ -862,33 +877,82 @@
     <div class="partner-badge">JayFM Jos</div>
     <div class="partner-badge">PRTVC</div>
     <div class="partner-badge">Bureau of Statistics</div>
+    <div class="partner-badge">POWA</div>
   </div>
 </div>
 
+<!-- ── BANK DETAILS ── -->
+<section id="bank-details">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-tag" style="margin:0 auto 16px;">Direct Support</div>
+      <h2 class="section-title">Direct Bank Transfer</h2>
+      <p class="section-sub" style="margin:0 auto;">For direct contributions, sponsorships, or corporate partnerships, please use the foundation's official account details below.</p>
+    </div>
+    <div class="bank-card">
+      <div class="bank-header">
+        <h3>GEORGEL Cancer Foundation</h3>
+        <p>Official Donation Account</p>
+      </div>
+      <div class="bank-body">
+        <div class="bank-row">
+          <div><div class="bank-label">Account Name</div><div class="bank-value">GEORGEL CANCER FOUNDATION</div></div>
+        </div>
+        <div class="bank-row">
+          <div><div class="bank-label">Account Number</div><div class="bank-acct">2047445415</div></div>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('2047445415').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Number',2000)})">Copy Number</button>
+        </div>
+        <div class="bank-row">
+          <div><div class="bank-label">Bank Name</div><div class="bank-value">First Bank of Nigeria</div></div>
+        </div>
+      </div>
+      <p class="bank-note">"Transparency is our foundation. Thank you for your trust and support."</p>
+    </div>
+    <div class="bank-imgs">
+      <img src="img/img15.jpg" alt="GEORGEL at JUTH"/>
+      <img src="img/img17.jpg" alt="Visiting a cancer warrior"/>
+    </div>
+  </div>
+</section>
+
+<!-- ── DONATE ── -->
 <section id="donate">
   <div class="section-inner">
     <div class="section-tag">Support Our Mission</div>
     <h2 class="section-title">Your Gift Saves Lives</h2>
     <p class="section-sub">Every contribution funds free screenings, medical supplies, and community outreach reaching the most vulnerable Nigerians in the fight against cancer.</p>
     <div class="donate-cards">
-      <div class="donate-card"><div class="donate-amount">₦5,000</div><div class="donate-label">Basic Support</div><div class="donate-impact">Supports one free cancer screening for a community member who cannot afford it</div></div>
-      <div class="donate-card highlighted"><div class="donate-amount">₦25,000</div><div class="donate-label">Community Champion ✦</div><div class="donate-impact">Funds a full day of outreach materials and educational resources for a community session</div></div>
-      <div class="donate-card"><div class="donate-amount">₦100,000</div><div class="donate-label">Foundation Partner</div><div class="donate-impact">Sponsors a complete community screening event including transport and medical personnel</div></div>
+      <div class="donate-card">
+        <div class="donate-amount">₦5,000</div>
+        <div class="donate-label">Basic Support</div>
+        <div class="donate-impact">Supports one free cancer screening for a community member who cannot afford it</div>
+      </div>
+      <div class="donate-card highlighted">
+        <div class="donate-amount">₦25,000</div>
+        <div class="donate-label">Community Champion ✦</div>
+        <div class="donate-impact">Funds a full day of outreach materials and educational resources for a community session</div>
+      </div>
+      <div class="donate-card">
+        <div class="donate-amount">₦100,000</div>
+        <div class="donate-label">Foundation Partner</div>
+        <div class="donate-impact">Sponsors a complete community screening event including transport and medical personnel</div>
+      </div>
     </div>
     <div class="donate-actions">
-      <a href="#contact" class="btn-donate">Donate Now</a>
+      <a href="#bank-details" class="btn-donate">Donate Now</a>
       <a href="#contact" class="btn-outline-light">Become a Sponsor</a>
     </div>
   </div>
 </section>
 
+<!-- ── CONTACT ── -->
 <section id="contact">
   <div class="section-inner">
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="section-tag">Get In Touch</div>
         <h2 class="section-title">We'd Love to Hear From You</h2>
-        <p>Whether you want to volunteer, partner, refer a patient, or learn more — reach out. Every message matters to us.</p>
+        <p class="section-sub">Whether you want to volunteer, partner, refer a patient, or learn more — reach out. Every message matters to us.</p>
         <div class="contact-items">
           <div class="contact-item"><div class="c-icon">📍</div><div class="c-detail"><strong>Location</strong><span>Jos, Plateau State, Nigeria</span></div></div>
           <div class="contact-item"><div class="c-icon">📧</div><div class="c-detail"><strong>Email</strong><span><a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></span></div></div>
@@ -903,7 +967,17 @@
           <div class="form-group"><label>Last Name</label><input type="text" placeholder="Your last name"/></div>
         </div>
         <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="form-group"><label>Subject</label><select><option value="">Select a subject</option><option>General Inquiry</option><option>Donation / Sponsorship</option><option>Volunteering</option><option>Partnership</option><option>Media / Press</option><option>Patient Support</option></select></div>
+        <div class="form-group"><label>Subject</label>
+          <select>
+            <option value="">Select a subject</option>
+            <option>General Inquiry</option>
+            <option>Donation / Sponsorship</option>
+            <option>Volunteering</option>
+            <option>Partnership</option>
+            <option>Media / Press</option>
+            <option>Patient Support</option>
+          </select>
+        </div>
         <div class="form-group"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
         <button class="btn-submit">Send Message →</button>
       </div>
@@ -911,52 +985,67 @@
   </div>
 </section>
 
-<!-- SPLIT CTA SECTION -->
-<section class="split-cta" style="padding: 0; display: grid; grid-template-columns: 1fr 1fr;">
-  <a href="#donate" class="cta-block donate-cta" style="padding: 100px 40px; background: var(--teal); color: #fff; text-decoration: none; text-align: center; transition: 0.4s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
-    <div style="font-size: 3rem;">❤️</div>
-    <h2 style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0;">Make a Donation</h2>
-    <p style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; margin: 0;">Your financial support directly funds screenings and patient care across Nigeria.</p>
-    <div class="cta-btn-mini" style="margin-top: 10px; border: 2px solid #fff; padding: 12px 30px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Support Us →</div>
+<!-- ── SPLIT CTA ── -->
+<div class="split-cta">
+  <a href="#bank-details" class="cta-block donate-cta">
+    <div style="font-size:3rem;">❤️</div>
+    <h2>Make a Donation</h2>
+    <p>Your financial support directly funds screenings and patient care across Nigeria.</p>
+    <div class="cta-btn-mini">Support Us →</div>
   </a>
-  <a href="#contact" class="cta-block involve-cta" style="padding: 100px 40px; background: var(--navy); color: #fff; text-decoration: none; text-align: center; transition: 0.4s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
-    <div style="font-size: 3rem;">🤝</div>
-    <h2 style="font-family: 'DM Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0;">Get Involved</h2>
-    <p style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; margin: 0;">Join our team of volunteers or partner with us to expand our life-saving impact.</p>
-    <div class="cta-btn-mini" style="margin-top: 10px; border: 2px solid #fff; padding: 12px 30px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Partner With Us →</div>
+  <a href="#contact" class="cta-block involve-cta">
+    <div style="font-size:3rem;">🤝</div>
+    <h2>Get Involved</h2>
+    <p>Join our team of volunteers or partner with us to expand our life-saving impact.</p>
+    <div class="cta-btn-mini">Partner With Us →</div>
   </a>
-</section>
+</div>
 
-<style>
-  .cta-block:hover { transform: scale(1.02); z-index: 10; filter: brightness(1.1); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
-  @media (max-width: 900px) { .split-cta { grid-template-columns: 1fr; } .cta-block { padding: 80px 20px !important; } }
-</style>
-
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="img/logo.jpg" alt="GEORGEL Cancer Foundation" class="footer-logo" />
+      <img src="img/logo.jpg" alt="GEORGEL Cancer Foundation" class="footer-logo"/>
       <div class="footer-tagline">Spreading Hope, Saving Lives</div>
       <p>Fighting cancer through awareness, early detection, advocacy, and community partnerships across Nigeria. Together, we can save lives.</p>
       <div class="footer-social">
-        <a href="#" class="social-btn fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="social-btn x-twitter" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="social-btn ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="social-btn ln" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://wa.me/2348032585419" class="social-btn wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/18UeNhysEq/?mibextid=wwXIfr" target="_blank" class="social-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/georgel_cf?s=21&t=ErnogbDOxRH_9KhI0MVetA" target="_blank" class="social-btn tw" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/georgel_cf?igsh=MWl5dWdkcnlqdjg1Ng%3D%3D&utm_source=qr" target="_blank" class="social-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@georgelcancerfoundation?_r=1&_t=ZS-95dOmEcpRdg" target="_blank" class="social-btn tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/2348032585419" target="_blank" class="social-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#activities">Activities &amp; Gallery</a></li><li><a href="#donate">Donate</a></li><li><a href="#contact">Contact</a></li></ul>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#activities">Activities &amp; Gallery</a></li>
+        <li><a href="#bank-details">Bank Details</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
     <div class="footer-col">
       <h4>Our Work</h4>
-      <ul><li><a href="#activities">Cancer Screenings</a></li><li><a href="#activities">Community Outreach</a></li><li><a href="#activities">Advocacy</a></li><li><a href="#activities">Media Engagement</a></li><li><a href="#activities">Patient Support</a></li></ul>
+      <ul>
+        <li><a href="#activities">Cancer Screenings</a></li>
+        <li><a href="#activities">Community Outreach</a></li>
+        <li><a href="#activities">Advocacy</a></li>
+        <li><a href="#activities">Media Engagement</a></li>
+        <li><a href="#activities">Patient Support</a></li>
+      </ul>
     </div>
     <div class="footer-col">
       <h4>Partners</h4>
-      <ul><li><a href="#">JUTH</a></li><li><a href="#">MWAN</a></li><li><a href="#">Nigerian Cancer Society</a></li><li><a href="#">NMA</a></li><li><a href="#">Federal Ministry of Health</a></li></ul>
+      <ul>
+        <li><a href="#">JUTH</a></li>
+        <li><a href="#">MWAN</a></li>
+        <li><a href="#">Nigerian Cancer Society</a></li>
+        <li><a href="#">NMA</a></li>
+        <li><a href="#">Federal Ministry of Health</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
@@ -965,15 +1054,7 @@
   </div>
 </footer>
 
-<style>
-  .social-btn.fb:hover { background: #1877F2 !important; border-color: #1877F2 !important; }
-  .social-btn.x-twitter:hover { background: #000000 !important; border-color: #000000 !important; }
-  .social-btn.ig:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important; border-color: transparent !important; }
-  .social-btn.ln:hover { background: #0077b5 !important; border-color: #0077b5 !important; }
-  .social-btn.wa:hover { background: #25D366 !important; border-color: #25D366 !important; }
-  .social-btn i { font-size: 1.1rem; color: #fff; }
-</style>
-
+<!-- ── LIGHTBOX ── -->
 <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
   <div class="lightbox-inner">
     <img id="lightboxImg" src="" alt=""/>
@@ -982,24 +1063,52 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  // Hamburger
   document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
   document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-  const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i%4)*.08+'s';e.target.classList.add('visible');}});},{threshold:.1});
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){ e.target.style.transitionDelay=(i%4)*.08+'s'; e.target.classList.add('visible'); }
+    });
+  },{threshold:.1});
   document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-  function openLightbox(src,title,desc){document.getElementById('lightboxImg').src=src;document.getElementById('lightboxTitle').textContent=title;document.getElementById('lightboxDesc').textContent=desc;document.getElementById('lightbox').classList.add('open');}
-  function closeLightboxOutside(e){if(e.target===document.getElementById('lightbox'))document.getElementById('lightbox').classList.remove('open');}
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
+
+  // Lightbox
+  function openLightbox(src,title,desc){
+    document.getElementById('lightboxImg').src=src;
+    document.getElementById('lightboxTitle').textContent=title;
+    document.getElementById('lightboxDesc').textContent=desc;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightboxOutside(e){ if(e.target===document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('open'); }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open'); });
+
+  // Gallery filter
   document.querySelectorAll('.filter-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
       tab.classList.add('active');
-      const f=tab.dataset.filter;
+      const f = tab.dataset.filter;
       document.querySelectorAll('.gallery-card').forEach(c=>{
-        c.style.display=(f==='all'||c.dataset.cat===f)?'block':'none';
+        c.style.display = (f==='all' || c.dataset.cat===f) ? '' : 'none';
       });
     });
   });
+
+  // Hero carousel
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  function goToSlide(n){
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  document.querySelector('.next').addEventListener('click',()=>goToSlide(currentSlide+1));
+  document.querySelector('.prev').addEventListener('click',()=>goToSlide(currentSlide-1));
+  setInterval(()=>goToSlide(currentSlide+1), 6000);
 </script>
 </body>
 </html>
