@@ -95,11 +95,11 @@
   .social-sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 2px; }
   .social-side-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; border-radius: 0 4px 4px 0; }
   .social-side-link:hover { width: 54px; padding-left: 10px; }
-  .social-side-link.facebook { background: #3b5998; }
+  .social-side-link.facebook  { background: #3b5998; }
   .social-side-link.instagram { background: #e4405f; }
   .social-side-link.x-twitter { background: #000; }
-  .social-side-link.tiktok { background: #010101; }
-  .social-side-link.whatsapp { background: #25d366; }
+  .social-side-link.tiktok    { background: #010101; }
+  .social-side-link.linkedin  { background: #0077b5; }
   @media(max-width:768px) { .social-sidebar { display: none; } }
 
   /* ── SECTIONS ── */
@@ -268,11 +268,11 @@
   .footer-social { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
   .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .95rem; text-decoration: none; color: #fff; transition: all 0.3s; }
   .social-btn:hover { transform: translateY(-3px); }
-  .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
-  .social-btn.tw:hover { background: #000; border-color: #000; }
-  .social-btn.ig:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: transparent; }
-  .social-btn.tt:hover { background: #010101; border-color: #010101; }
-  .social-btn.wa:hover { background: #25D366; border-color: #25D366; }
+  .social-btn.fb:hover  { background: #1877F2; border-color: #1877F2; }
+  .social-btn.tw:hover  { background: #000; border-color: #000; }
+  .social-btn.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: transparent; }
+  .social-btn.tt:hover  { background: #010101; border-color: #010101; }
+  .social-btn.li:hover  { background: #0077b5; border-color: #0077b5; }
   .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
   .footer-bottom a { color: rgba(255,255,255,.5); text-decoration: none; }
   .footer-bottom a:hover { color: #7ec8c0; }
@@ -343,7 +343,7 @@
   <a href="https://www.instagram.com/georgel_cf?igsh=MWl5dWdkcnlqdjg1Ng%3D%3D&utm_source=qr" target="_blank" class="social-side-link instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
   <a href="https://x.com/georgel_cf?s=21&t=ErnogbDOxRH_9KhI0MVetA" target="_blank" class="social-side-link x-twitter" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
   <a href="https://www.tiktok.com/@georgelcancerfoundation?_r=1&_t=ZS-95dOmEcpRdg" target="_blank" class="social-side-link tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
-  <a href="https://wa.me/2348032585419" target="_blank" class="social-side-link whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.linkedin.com/in/retsum-george-442536195" target="_blank" class="social-side-link linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
 </div>
 
 <!-- ── TOPBAR ── -->
@@ -423,9 +423,14 @@
   </div>
 </section>
 
-<!-- ── ABOUT ── -->
+<!-- ═══════════════════════════════════════════════════
+     ── ABOUT (one unified section — story, mission,
+        objectives, founder, trustees all inside here)
+     ═══════════════════════════════════════════════════ -->
 <section id="about">
   <div class="section-inner">
+
+    <!-- About intro -->
     <div class="about-grid">
       <div class="about-img-stack reveal">
         <img src="img/img15.jpg" alt="GEORGEL at JUTH" class="about-img-main" />
@@ -471,6 +476,18 @@
       </div>
     </div>
 
+    <!-- Extended About text -->
+    <div class="about-extended reveal">
+      <p class="section-sub" style="max-width:100%;">Since our inception, we have carried out impactful initiatives. We partner with government parastatals, media houses, and hospitals to facilitate essential screening and advocacy. During <strong>Pink October</strong>, we lead extensive breast and cervical cancer awareness campaigns. We are proud to be officially registered with the <strong>Nigerian Cancer Society</strong>, aligning our work with national standards.</p>
+      <p class="section-sub" style="max-width:100%;margin-top:12px;">On February 17th, we presented research on the psychosocial impact of cancer on caregivers and participated in the North Central Mega Rally. We also donated premedication supplies to the Jos University Teaching Hospital Radio Oncology Unit.</p>
+      <h3 style="margin-top:28px;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--navy);">Looking Ahead</h3>
+      <p class="section-sub" style="max-width:100%;margin-top:8px;">As the year progresses, we continue to extend our outreach to local government areas, churches, mosques, schools, and rural communities. Our vision is to strengthen cancer care and health education across Plateau State and the North Central region of Nigeria.</p>
+      <div class="info-alert">
+        <p><strong>Learn more:</strong> <a href="http://www.GEORGELcancerfoundation.org" target="_blank">www.GEORGELcancerfoundation.org</a></p>
+        <p style="margin-top:6px;"><strong>Inquiries:</strong> <a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></p>
+      </div>
+    </div>
+
     <!-- Founder -->
     <div class="founder-section reveal">
       <div class="about-grid" style="align-items:flex-start;">
@@ -482,8 +499,13 @@
           <p class="section-sub" style="margin-top:12px;">While her personal faith provides strength, the foundation is built on inclusivity, welcoming individuals from all backgrounds. Her vision is to bridge the gap between awareness and access to care, restoring hope to every life touched by cancer.</p>
         </div>
         <div class="founder-img-container">
-          <div class="founder-img-wrapper"><img src="img/trustee1ceo.jpeg" alt="Retsum George"></div>
-          <div class="founder-tag">   <p>Retsum George</p>   <span>Founder / CEO</span>   <a href="https://www.linkedin.com/in/retsum-george-442536195" target="_blank" rel="noopener noreferrer" title="LinkedIn" style="display:inline-block;margin-top:8px;color:#7ec8c0;font-size:1.2rem;transition:color 0.3s;">     <i class="fab fa-linkedin"></i>   </a> </div>
+          <div class="founder-img-wrapper">
+            <img src="img/trustee1ceo.jpeg" alt="Retsum George">
+          </div>
+          <div class="founder-tag">
+            <p>Retsum George</p>
+            <span>Founder / CEO</span>
+          </div>
         </div>
       </div>
     </div>
@@ -496,45 +518,39 @@
       <div class="trustees-grid">
         <div class="trustee-card">
           <div class="trustee-img"><img src="img/trustee2 Dr Samuel Kwis.jpeg" alt="Dr. Samuel Kwis"></div>
-          <h3>Dr. Samuel Kwis</h3><span class="trustee-role">Trustee</span>
+          <h3>Dr. Samuel Kwis</h3>
+          <span class="trustee-role">Trustee</span>
           <p class="trustee-bio">Dr. Samuel Kwis is a <strong>Consultant Radiologist and Clinical Oncologist</strong>, bringing medical expertise in cancer diagnosis and treatment to GEORGEL. He plays a vital role in guiding our health-focused initiatives, ensuring they are medically informed and aligned with best practices.</p>
         </div>
         <div class="trustee-card">
           <div class="trustee-img" style="border-color:var(--pink);"><img src="img/trustee3 Dr. Bwatyum.jpeg" alt="Dr. Bwatyum Annah Gyang"></div>
-          <h3>Dr. Bwatyum Annah Gyang</h3><span class="trustee-role" style="color:var(--pink);">Trustee</span>
+          <h3>Dr. Bwatyum Annah Gyang</h3>
+          <span class="trustee-role" style="color:var(--pink);">Trustee</span>
           <p class="trustee-bio">Dr. Bwatyum Annah Gyang is a <strong>Consultant Psychiatrist at JUTH</strong>, with a specialized focus on <strong>psycho-oncology</strong>. As a trustee, she ensures our patients are supported psychologically throughout their journey, advocating for mental health in recovery.</p>
         </div>
         <div class="trustee-card">
           <div class="trustee-img"><img src="img/trustee4 Nurse Christy.jpeg" alt="Nurse Christy Yilwatda Ngwan"></div>
-          <h3>Nurse Christy Yilwatda Ngwan</h3><span class="trustee-role">Trustee</span>
+          <h3>Nurse Christy Yilwatda Ngwan</h3>
+          <span class="trustee-role">Trustee</span>
           <p class="trustee-bio">Nurse Ngwan is deeply committed to <strong>advancing oncology care</strong> and mentoring healthcare providers across the North Central region. She is a passionate advocate for improved support systems, ensuring no one faces cancer alone.</p>
         </div>
         <div class="trustee-card">
           <div class="trustee-img"><img src="img/trustee6 Danjuma.jpeg" alt="Danjuma Nabara Atuski"></div>
-          <h3>Danjuma Nabara Atuski</h3><span class="trustee-role">Programs Manager</span>
+          <h3>Danjuma Nabara Atuski</h3>
+          <span class="trustee-role">Programs Manager</span>
           <p class="trustee-bio">Danjuma Nabara Atuski is a <strong>Human Resources Management expert</strong> with a passion for workplace wellness and public health advocacy. As Programs Manager, he drives strategic partnerships and builds sustainable models for cancer education.</p>
         </div>
         <div class="trustee-card">
           <div class="trustee-img" style="border-color:var(--navy);"><img src="img/trustee7 Gonler Dakom.jpeg" alt="Gonler Dakom Simon"></div>
-          <h3>Gonler Dakom Simon</h3><span class="trustee-role" style="color:var(--navy);">Board Member &amp; Secretary</span>
+          <h3>Gonler Dakom Simon</h3>
+          <span class="trustee-role" style="color:var(--navy);">Board Member &amp; Secretary</span>
           <p class="trustee-bio">Gonler Dakom Simon is an <strong>Information Technology Specialist</strong> who ensures the foundation's operational and digital effectiveness. In his role as Secretary, he supports coordination, documentation, and organizational governance.</p>
         </div>
       </div>
     </div>
 
-    <div class="about-extended reveal">
-      <p class="section-sub" style="max-width:100%;">Since our inception, we have carried out impactful initiatives. We partner with government parastatals, media houses, and hospitals to facilitate essential screening and advocacy. During <strong>Pink October</strong>, we lead extensive breast and cervical cancer awareness campaigns. We are proud to be officially registered with the <strong>Nigerian Cancer Society</strong>, aligning our work with national standards.</p>
-      <p class="section-sub" style="max-width:100%;margin-top:16px;padding:18px 22px;background:var(--teal-pale);border-left:4px solid var(--teal);border-radius:4px;font-weight:500;">🎗️ <strong>GEORGEL is a proud member of the Nigerian Cancer Society</strong> — Nigeria's foremost cancer advocacy organization — affirming our commitment to nationally coordinated cancer awareness, prevention, and patient support.</p>
-      <p class="section-sub" style="max-width:100%;margin-top:12px;">On February 17th, we presented research on the psychosocial impact of cancer on caregivers and participated in the North Central Mega Rally. We also donated premedication supplies to the Jos University Teaching Hospital Radio Oncology Unit.</p>
-      <h3 style="margin-top:28px;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--navy);">Looking Ahead</h3>
-      <p class="section-sub" style="max-width:100%;margin-top:8px;">As the year progresses, we continue to extend our outreach to local government areas, churches, mosques, schools, and rural communities. Our vision is to strengthen cancer care and health education across Plateau State and the North Central region of Nigeria.</p>
-      <div class="info-alert">
-        <p><strong>Learn more:</strong> <a href="http://www.GEORGELcancerfoundation.org" target="_blank">www.GEORGELcancerfoundation.org</a></p>
-        <p style="margin-top:6px;"><strong>Inquiries:</strong> <a href="mailto:georgelcancerfoundation45@gmail.com">georgelcancerfoundation45@gmail.com</a></p>
-      </div>
-    </div>
-  </div>
-</section>
+  </div><!-- /.section-inner -->
+</section><!-- /#about — everything above is ONE unified About section -->
 
 <!-- ── ACTIVITIES & GALLERY ── -->
 <section id="activities">
@@ -826,9 +842,10 @@
         <div class="card-img"><img src="img/img20.jpg" alt="Plateau DMC" loading="lazy"/><span class="card-tag-overlay">Institutional</span></div>
         <div class="card-body"><h3>Visit to Plateau State DMC &amp; Bureau of Statistics</h3><p>GEORGEL engages Plateau State institutions — ensuring cancer data drives policy and the foundation's work is formally recognized.</p><div class="card-meta">🏛️ Plateau State Government</div></div>
       </div>
-    </div>
-  </div>
-</section>
+
+    </div><!-- /.gallery-grid -->
+  </div><!-- /.section-inner -->
+</section><!-- /#activities -->
 
 <!-- ── PINK OCTOBER ── -->
 <section id="pink-october">
@@ -1014,7 +1031,7 @@
         <a href="https://x.com/georgel_cf?s=21&t=ErnogbDOxRH_9KhI0MVetA" target="_blank" class="social-btn tw" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
         <a href="https://www.instagram.com/georgel_cf?igsh=MWl5dWdkcnlqdjg1Ng%3D%3D&utm_source=qr" target="_blank" class="social-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@georgelcancerfoundation?_r=1&_t=ZS-95dOmEcpRdg" target="_blank" class="social-btn tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/2348032585419" target="_blank" class="social-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/retsum-george-442536195" target="_blank" class="social-btn li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </div>
     <div class="footer-col">
